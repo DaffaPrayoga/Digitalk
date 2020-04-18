@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0fedecc1-b020-4be8-84ac-f25cd6cd2d9c" name="Default Changelist" comment="" />
+    <list default="true" id="0fedecc1-b020-4be8-84ac-f25cd6cd2d9c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/head.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/js.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/js.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +20,9 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -114,6 +125,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1Zx36kB7bMlIn5gkTWLHBVotVaz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -121,6 +133,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/layouts" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -165,6 +178,7 @@
       <workItem from="1586112876783" duration="19420000" />
       <workItem from="1586211554321" duration="224000" />
       <workItem from="1587049796858" duration="628000" />
+      <workItem from="1587113269087" duration="10037000" />
     </task>
     <servers />
   </component>
@@ -185,9 +199,10 @@
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state width="600" height="440" key="javadoc.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1586149641752" />
-    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup" timestamp="1586142840608">
-      <screen x="0" y="23" width="1920" height="1000" />
+    <state x="461" y="234" width="670" height="609" key="search.everywhere.popup" timestamp="1587135126421">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="461" y="234" width="670" height="609" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1587135126421" />
     <state x="614" y="283" width="670" height="676" key="search.everywhere.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1586142840608" />
   </component>
 </project>

@@ -32,7 +32,7 @@
                         Sign Up
                     </a>
                     <a href="#"
-                       class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient-noshadow"
+                       class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
                        style="border: none;">
                         Sign In
                     </a>

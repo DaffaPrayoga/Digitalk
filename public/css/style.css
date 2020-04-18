@@ -26,6 +26,11 @@ body {
     background-color: #FAB326 !important;
 }
 
+.background-darken-1 {
+    background-color: rgba(0,0,0,0.1) !important;
+    box-shadow: none;
+}
+
 @font-face {
     font-family: 'Gilroy';
     src: url(../fonts/gilroy_heavy.woff2);
@@ -124,17 +129,17 @@ body {
 
 .bg-gradient {
     background: #f44881 !important; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(270deg,#f44881,#ec454f) !important;
-    background: -o-linear-gradient(270deg,#f44881,#ec454f) !important;
-    background: linear-gradient(270deg,#f44881,#ec454f) !important;
+    background: -webkit-linear-gradient(270deg, #f44881, #ec454f) !important;
+    background: -o-linear-gradient(270deg, #f44881, #ec454f) !important;
+    background: linear-gradient(270deg, #f44881, #ec454f) !important;
     box-shadow: 0 7px 25px 0 rgba(236, 69, 79, .45), 3px 7px 10px 0 rgba(244, 72, 129, .2) !important;
 }
 
 .bg-gradient-noshadow {
     background: #f44881; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(270deg,#f44881,#ec454f) !important;
-    background: -o-linear-gradient(270deg,#f44881,#ec454f) !important;
-    background: linear-gradient(270deg,#f44881,#ec454f) !important;
+    background: -webkit-linear-gradient(270deg, #f44881, #ec454f) !important;
+    background: -o-linear-gradient(270deg, #f44881, #ec454f) !important;
+    background: linear-gradient(270deg, #f44881, #ec454f) !important;
 }
 
 .btn-gradient {
@@ -326,4 +331,53 @@ body {
 .hvr-sweep-to-left:active:before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
+}
+
+/* Animation */
+@-webkit-keyframes rotate {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* Variables */
+/* Loading Icon */
+.loading {
+    width: 200px;
+    height: 200px;
+}
+
+.loading__ring {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+}
+
+.loading__ring:first-child {
+    -webkit-transform: skew(30deg, 20deg);
+    transform: skew(30deg, 20deg);
+}
+
+.loading__ring:last-child {
+    -webkit-transform: skew(-30deg, -20deg) scale(-1, 1);
+    transform: skew(-30deg, -20deg) scale(-1, 1);
+}
+
+.loading__ring:last-child svg {
+    -webkit-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+
+.loading__ring svg {
+    -webkit-animation: rotate 1s linear infinite;
+    animation: rotate 1s linear infinite;
+    fill: rgba(255, 255, 255, 1);
 }
