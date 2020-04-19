@@ -1,73 +1,44 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+@section('head')
+    @include('layouts.head')
+@show
+<body class="font-regular">
+@section('loader')
+    @include('layouts.loader')
+@show
+<div class="uk-container">
+    <div
+        class="uk-card uk-card-default uk-card-body uk-border-rounded z-depth-15 uk-position-center"
+        style="border-radius: 20px;width: 400px;">
+        <a class="uk-align-center uk-text-center uk-logo font-heavy grey-text-4" href="{{route('welcome')}}"
+           style="transform: scale(1.1);margin-top: 10px">
+            <span class="uk-text-middle" style="font-size: 1.7rem;">Digitalk<span class="accent-color">.</span></span>
+            <span class="uk-text-middle brand-chip white-text font-bold bg-gradient-noshadow uk-border-rounded"
+                  style="font-size: 0.8rem;padding-left: 10px;padding-right: 10px;padding-top: 6px;padding-bottom: 5px;">Admin</span>
+        </a>
+        <form action="{{ route('login') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="uk-margin">
+                <div class="uk-inline uk-width-1">
+                    <span class="uk-form-icon" uk-icon="icon: user"></span>
+                    <input class="uk-input form-looks font-light" placeholder="Email Address"
+                           style="height: 50px;font-size: 14px;" name="email" type="text" required>
                 </div>
             </div>
-        </div>
+            <div class="uk-margin">
+                <div class="uk-inline uk-width-1">
+                    <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                    <input class="uk-input form-looks font-light" placeholder="Password"
+                           style="height: 50px;font-size: 14px;" name="password" type="password" required>
+                </div>
+            </div>
+            <button type="submit"
+                    class="uk-button uk-align-center uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
+                    style="border: none;">
+                Sign In
+            </button>
+        </form>
     </div>
 </div>
-@endsection
+@section('js')
+    @include('layouts.js')
+@show

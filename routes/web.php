@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-
+Route::get('/forum', 'HomeController@forum_page')->name('forum');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/admin', 'AdminController@index')->name('admin');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -1,11 +1,15 @@
 @section('head')
     @include('layouts.head')
 @show
+<body class="font-regular">
+@section('loader')
+    @include('layouts.loader')
+@show
 @section('navbar')
     @include('layouts.navbar')
 @show
 <div class="uk-container uk-margin-medium-top">
-    <div class="uk-card uk-card-default uk-card-body uk-border-rounded bg-gradient" style="z-index: -2;border-radius: 20px;">
+    <div class="uk-card uk-card-default uk-card-body uk-border-rounded bg-gradient-noshadow" style="z-index: -2;border-radius: 20px;">
         <div class="uk-container">
             <img src="{{asset('img/header.png')}}" uk-img style="height: 400px;z-index: -1"
                  class="uk-position-bottom-right" alt="">

@@ -21,7 +21,7 @@
                 <ul class="uk-navbar-nav uk-visible@m">
                     <li><a href="#" class="uk-text-capitalize font-extrabold grey-text-3" style="font-size: 1rem;">Threads</a>
                     </li>
-                    <li><a href="#" class="uk-text-capitalize font-extrabold grey-text-3"
+                    <li><a href="{{route('forum')}}" class="uk-text-capitalize font-extrabold grey-text-3"
                            style="font-size: 1rem;">Forum</a></li>
                     <li><a href="#" class="uk-text-capitalize font-extrabold grey-text-3" style="font-size: 1rem;">Popular</a>
                     </li>

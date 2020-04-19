@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // COMMON METHODS
+        App\Providers\CommonServiceProvider::class,
     ],
 
     /*
@@ -226,6 +228,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        // COMMON
+        'Globals' => App\Helpers\Globals::class,
 
     ],
 
