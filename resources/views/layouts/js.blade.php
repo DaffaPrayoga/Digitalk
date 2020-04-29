@@ -9,12 +9,14 @@
 <script type="text/javascript" src="{{asset('js/sweetalert.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/dataTables.material.min.js')}}"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script type="text/javascript">
     $(window).on("load", function () {
         // Animate loader off screen
         $(".loading-wrapper").fadeOut('slow');
     });
+
     function comfirm_popup(form, message) {
         swal({
             title: "<h5 class=font-bold center black-text style=font-size:2rem;>" + message + "<h5>",
@@ -23,7 +25,7 @@
             allowOutsideClick: true,
             showCancelButton: true,
             allowEscapeKey: true,
-            confirmButtonColor: "green",
+            confirmButtonColor: "#ec454f",
             cancelButtonText: "Cancel",
             closeOnConfirm: true,
             html: true,

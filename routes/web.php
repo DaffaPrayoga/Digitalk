@@ -19,6 +19,13 @@ Route::get('/', function () {
 Route::get('/forum', 'HomeController@forum_page')->name('forum');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
+    //Manage Brand
+    Route::get('/admin/manage_brands', 'BrandController@index')->name('brands.index');
+    Route::get('/admin/manage_brands/add', 'BrandController@create')->name('brands.create');
+    Route::post('/admin/manage_brands/store', 'BrandController@store')->name('brands.store');
+    Route::post('/admin/manage_brands/delete/{id}', 'BrandController@destroy')->name('brands.delete');
+    Route::get('/admin/manage_brands/edit/{id}', 'BrandController@edit')->name('brands.edit');
+    Route::post('/admin/manage_brands/update/{id}', 'BrandController@update')->name('brands.update');
 });
 Auth::routes();
 

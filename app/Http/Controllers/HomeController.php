@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,6 +28,7 @@ class HomeController extends Controller
     }
 
     public function forum_page() {
-        return view('forum');
+        $brands = Brand::all();
+        return view('forum', compact('brands'));
     }
 }
