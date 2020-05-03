@@ -16,16 +16,16 @@
         <div class="uk-width-1" style="margin-top: 30px;">
             <div class="uk-card uk-card-default uk-card-body z-depth-15"
                  style="border-radius: 6px;padding:20px 20px;">
-                <h5 class="grey-text-4 font-heavy" style="font-size: 1.8rem;display: inline">Manage Brands</h5>
+                <h5 class="grey-text-4 font-heavy" style="font-size: 1.8rem;display: inline">Manage Gadgets</h5>
                 <a class="uk-button bg-gradient white-text uk-border-rounded uk-align-right"
-                   style="margin-bottom: 50px;" href="{{route('brands.create')}}">+ Add</a>
+                   style="margin-bottom: 50px;" href="{{route('gadgets.create')}}">+ Add</a>
                 <table class="uk-table uk-table-divider" id="datatable">
                     <thead>
                     <tr>
                         <th style="font-weight: 500;">ID</th>
-                        <th style="font-weight: 500;">Nama Brand</th>
-                        <th style="font-weight: 500;">Logo</th>
-                        <th style="font-weight: 500;">Created At</th>
+                        <th style="font-weight: 500;">Nama Gadget</th>
+                        <th style="font-weight: 500;">Brand</th>
+                        <th style="font-weight: 500;">Year Released</th>
                         <th style="font-weight: 500;">Action</th>
                     </tr>
                     </thead>
@@ -34,14 +34,14 @@
                             <td>{{$v->id}}</td>
                             <td>{{$v->name}}</td>
                             <td>
-                                <img src="{{asset('img/brand_logo/'.$v->image)}}" style="height: 30px;" alt="">
+                                {{$v->brand->name}}
                             </td>
-                            <td class="font-light grey-text text-darken-1">{{\Carbon\Carbon::parse($v->created_at)->diffForHumans()}}</td>
+                            <td>{{$v->year_released}}</td>
                             <td>
-                                <a href="{{route('brands.edit', $v->id)}}" class="uk-icon-button" uk-icon="pencil"></a>
+                                <a href="{{route('gadgets.edit', $v->id)}}" class="uk-icon-button" uk-icon="pencil"></a>
                                 <form id="delete{{$v->id}}" method="post"
                                       onsubmit="event.preventDefault();comfirm_popup(this, 'Are you sure want to delete this?');"
-                                      action="{{route('brands.delete', $v->id)}}"
+                                      action="{{route('gadgets.delete', $v->id)}}"
                                       style="display: inline">
                                     @csrf
                                     <input type="hidden" value="{{$v->id}}"

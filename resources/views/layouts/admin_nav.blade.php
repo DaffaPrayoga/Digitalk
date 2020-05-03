@@ -28,7 +28,7 @@
                           uk-icon="icon: chevron-right"></span>
                 @endif
             </li>
-            <li><a href="#"
+            <li><a href="{{route('gadgets.index')}}"
                    class="@if(Route::currentRouteName() == 'gadgets.index') bg-gradient white-text @else side-nav-link @endif transisi"
                    @if(Route::currentRouteName() == 'gadgets.index') style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;margin-bottom: 10px;margin-top: 10px;" @endif>
                     <span class="uk-margin-small-right" uk-icon="icon: phone"></span>

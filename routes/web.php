@@ -26,6 +26,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/manage_brands/delete/{id}', 'BrandController@destroy')->name('brands.delete');
     Route::get('/admin/manage_brands/edit/{id}', 'BrandController@edit')->name('brands.edit');
     Route::post('/admin/manage_brands/update/{id}', 'BrandController@update')->name('brands.update');
+    //Manage Gadget
+    Route::get('/admin/manage_gadgets', 'GadgetController@index')->name('gadgets.index');
+    Route::get('/admin/manage_gadgets/add', 'GadgetController@create')->name('gadgets.create');
+    Route::post('/admin/manage_gadgets/store', 'GadgetController@store')->name('gadgets.store');
+    Route::post('/admin/manage_gadgets/delete/{id}', 'GadgetController@destroy')->name('gadgets.delete');
+    Route::get('/admin/manage_gadgets/edit/{id}', 'GadgetController@edit')->name('gadgets.edit');
+    Route::post('/admin/manage_gadgets/update/{id}', 'GadgetController@update')->name('gadgets.update');
 });
 Auth::routes();
 
