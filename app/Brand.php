@@ -11,8 +11,14 @@ class Brand extends Model
     protected $fillable = ['name', 'image'];
     public $timestamps = true;
 
-//    public function gadgets()
-//    {
-//        return $this->hasMany('App\Gadget', 'brand_id', 'id');
-//    }
+    public function gadgets()
+    {
+        return $this->hasMany('App\Gadget', 'brand_id', 'id');
+    }
+
+    public function countGadget()
+    {
+        $count = Gadget::where('brand_id', $this->brand_id)->get()->count();
+        return $count;
+    }
 }

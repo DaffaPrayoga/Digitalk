@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0fedecc1-b020-4be8-84ac-f25cd6cd2d9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Gadget.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/GadgetController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_03_174608_create_gadget_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/gadget/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/gadget/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/gadget/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/account_bar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/brand/add.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/brand/add.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/brand/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/brand/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/brand/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/brand/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin_nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin_nav.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/loader.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/loader.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Brand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/forum.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forum.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +13,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution>
-      <executable />
-    </execution>
+    <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -137,7 +124,6 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -153,6 +139,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.splitter.proportion" value="0.26606426" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -203,17 +190,24 @@
       <workItem from="1587890080844" duration="2501000" />
       <workItem from="1587918164487" duration="1944000" />
       <workItem from="1588156093699" duration="11833000" />
-      <workItem from="1588521696829" duration="13396000" />
+      <workItem from="1588521696829" duration="13619000" />
+      <workItem from="1588879897087" duration="302000" />
+      <workItem from="1588880273029" duration="1635000" />
+      <workItem from="1588932332721" duration="2496000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="408" y="176" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1588879928331">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state x="408" y="176" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.820@0.23.1440.820" timestamp="1588879928331" />
     <state x="697" y="292" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1588527526672">
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
@@ -223,28 +217,28 @@
     </state>
     <state x="761" y="328" key="NewPhpFileDialog/0.0.1440.900@0.0.1440.900" timestamp="1588175061554" />
     <state x="780" y="450" key="NewPhpFileDialog/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1588533552329" />
-    <state x="618" y="124" key="SettingsEditor" timestamp="1588527019976">
+    <state x="691" y="135" width="997" height="759" key="SettingsEditor" timestamp="1588930514807">
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state x="173" y="31" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1588521823592" />
-    <state x="173" y="51" key="SettingsEditor/0.23.1440.820@0.23.1440.820" timestamp="1588521792165" />
-    <state x="618" y="124" key="SettingsEditor/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1588527019976" />
-    <state x="380" y="265" key="com.intellij.ide.util.TipDialog" timestamp="1588521700126">
+    <state x="207" y="37" width="997" height="759" key="SettingsEditor/0.23.1440.820@0.23.1440.820" timestamp="1588897799573" />
+    <state x="691" y="135" key="SettingsEditor/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1588930514807" />
+    <state x="380" y="265" key="com.intellij.ide.util.TipDialog" timestamp="1588879897049">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
     <state x="380" y="266" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1587262697331" />
-    <state x="380" y="265" key="com.intellij.ide.util.TipDialog/0.23.1440.820@0.23.1440.820" timestamp="1588521700126" />
+    <state x="380" y="265" key="com.intellij.ide.util.TipDialog/0.23.1440.820@0.23.1440.820" timestamp="1588879897049" />
     <state x="380" y="445" key="com.intellij.ide.util.TipDialog/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1587918170194" />
     <state x="380" y="445" key="com.intellij.ide.util.TipDialog/1920.23.1280.777/0.23.1920.1000@0.23.1920.1000" timestamp="1587890138108" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1586149641752">
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state width="600" height="440" key="javadoc.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1586149641752" />
-    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup" timestamp="1588545673795">
+    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup" timestamp="1588933961561">
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state x="461" y="234" width="670" height="609" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1588189135026" />
     <state x="461" y="236" width="670" height="555" key="search.everywhere.popup/0.23.1440.820@0.23.1440.820" timestamp="1587968047151" />
-    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1588545673795" />
+    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1588933961561" />
   </component>
 </project>

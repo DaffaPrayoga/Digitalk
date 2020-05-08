@@ -15,13 +15,19 @@
         @foreach($brands as $b)
             <div class="uk-width-1-5">
                 <div
-                    class="uk-card uk-card-default uk-card-body uk-border-rounded uk-padding-small z-depth-15" style="padding-bottom: 30px;border-radius: 10px;">
-                    <img class="uk-align-center" src="{{asset('img/brand_logo/'.$b->image)}}" style="height: 30px;margin-top: 24px;margin-bottom: 35px;" alt="">
+                    class="uk-card uk-card-default uk-card-body uk-border-rounded uk-padding-small z-depth-15"
+                    style="padding-bottom: 30px;border-radius: 10px;">
+                    <a href="#kontol">
+                        <img class="uk-align-center" src="{{asset('img/brand_logo/'.$b->image)}}"
+                             style="height: 30px;margin-top: 24px;margin-bottom: 35px;" alt="">
+                    </a>
                     <hr class="uk-divider-icon">
-                    <span class="brand-chip uk-border-rounded grey-text-2"
-                          style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;">43 Gadgets</span><br><br>
-                    <span class="brand-chip uk-border-rounded grey-text-2"
-                          style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;">+234 Threads</span>
+                    <a class="brand-chip uk-border-rounded grey-text-2"
+                       style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$b->countGadget()}}
+                        Gadgets</a><br><br>
+                    <a class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
+                       style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">+234
+                        Threads</a>
                 </div>
             </div>
         @endforeach
