@@ -7,10 +7,10 @@
         </a>
         <ul class="uk-nav uk-nav-default">
             <li><a href="{{route('admin')}}"
-                   class="@if(Route::currentRouteName() == 'admin') bg-gradient white-text @else side-nav-link @endif transisi"
+                   class="@if (request()->segment(1) . '/' . request()->segment(2) == 'admin/') bg-gradient white-text @else side-nav-link @endif transisi"
                    style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;"><span
                         class="uk-margin-small-right" uk-icon="icon: home"></span> <span class="uk-text-middle">Dashboard</span></a>
-                @if(Route::currentRouteName() != 'admin')
+                @if(request()->segment(1) . '/' . request()->segment(2) != 'admin/')
                     <span style="float: right;margin-top: -33px;left: -10px;position: relative"
                           uk-icon="icon: chevron-right"></span>
                 @endif
@@ -19,41 +19,41 @@
                 MANAGE
             </li>
             <li><a href="{{route('brands.index')}}"
-                   class="@if(Route::currentRouteName() == 'brands.index') bg-gradient white-text @else side-nav-link @endif transisi"
-                   @if(Route::currentRouteName() == 'brands.index') style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;margin-bottom: 10px;margin-top: 10px;" @endif>
+                   class="@if (request()->segment(1) . '/' . request()->segment(2) == 'admin/manage_brands') bg-gradient white-text @else side-nav-link @endif transisi"
+                   @if (request()->segment(1) . '/' . request()->segment(2) == 'admin/manage_brands') style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;margin-bottom: 10px;margin-top: 10px;" @endif>
                     <span class="uk-margin-small-right" uk-icon="icon: tag"></span>
-                    <span class="uk-text-middle">Brands</span></a>
-                @if(Route::currentRouteName() != 'brands.index')
+                    <span class="uk-text-middle">Brand</span></a>
+                @if (request()->segment(1) . '/' . request()->segment(2) != 'admin/manage_brands')
                     <span style="float: right;margin-top: -33px;left: -10px;position: relative"
                           uk-icon="icon: chevron-right"></span>
                 @endif
             </li>
             <li><a href="{{route('gadgets.index')}}"
-                   class="@if(Route::currentRouteName() == 'gadgets.index') bg-gradient white-text @else side-nav-link @endif transisi"
-                   @if(Route::currentRouteName() == 'gadgets.index') style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;margin-bottom: 10px;margin-top: 10px;" @endif>
+                   class="@if (request()->segment(1) . '/' . request()->segment(2) == 'admin/manage_gadgets') bg-gradient white-text @else side-nav-link @endif transisi"
+                   @if (request()->segment(1) . '/' . request()->segment(2) == 'admin/manage_gadgets') style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;margin-bottom: 10px;margin-top: 10px;" @endif>
                     <span class="uk-margin-small-right" uk-icon="icon: phone"></span>
                     <span class="uk-text-middle">Gadget</span></a>
-                @if(Route::currentRouteName() != 'gadgets.index')
+                @if (request()->segment(1) . '/' . request()->segment(2) != 'admin/manage_gadgets')
                     <span style="float: right;margin-top: -33px;left: -10px;position: relative"
                           uk-icon="icon: chevron-right"></span>
                 @endif
             </li>
             <li><a href="#"
-                   class="@if(Route::currentRouteName() == 'threads.index') bg-gradient white-text @else side-nav-link @endif transisi"
-                   @if(Route::currentRouteName() == 'threads.index') style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;margin-bottom: 10px;margin-top: 10px;" @endif>
+                   class="@if (request()->segment(1) . '/' . request()->segment(2) == 'admin/manage_threads') bg-gradient white-text @else side-nav-link @endif transisi"
+                   @if (request()->segment(1) . '/' . request()->segment(2) == 'admin/manage_threads') style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;margin-bottom: 10px;margin-top: 10px;" @endif>
                     <span class="uk-margin-small-right" uk-icon="icon: hashtag"></span>
                     <span class="uk-text-middle">Threads</span></a>
-                @if(Route::currentRouteName() != 'threads.index')
+                @if (request()->segment(1) . '/' . request()->segment(2) != 'admin/manage_threads')
                     <span style="float: right;margin-top: -33px;left: -10px;position: relative"
                           uk-icon="icon: chevron-right"></span>
                 @endif
             </li>
             <li><a href="#"
-                   class="@if(Route::currentRouteName() == 'reports.index') bg-gradient white-text @else side-nav-link @endif transisi"
-                   @if(Route::currentRouteName() == 'reports.index') style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;margin-bottom: 10px;margin-top: 10px;" @endif>
+                   class="@if (request()->segment(1) . '/' . request()->segment(2) == 'admin/manage_reports') bg-gradient white-text @else side-nav-link @endif transisi"
+                   @if (request()->segment(1) . '/' . request()->segment(2) == 'admin/manage_reports') style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;margin-bottom: 10px;margin-top: 10px;" @endif>
                     <span class="uk-margin-small-right" uk-icon="icon: pull"></span>
                     <span class="uk-text-middle">Reports</span></a>
-                @if(Route::currentRouteName() != 'reports.index')
+                @if (request()->segment(1) . '/' . request()->segment(2) != 'admin/manage_reports')
                     <span style="float: right;margin-top: -33px;left: -10px;position: relative"
                           uk-icon="icon: chevron-right"></span>
                 @endif

@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0fedecc1-b020-4be8-84ac-f25cd6cd2d9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Brand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/forum.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forum.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin_nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin_nav.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,17 +127,19 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.26606426" />
   </component>
   <component name="RecentsManager">
@@ -194,6 +195,15 @@
       <workItem from="1588879897087" duration="302000" />
       <workItem from="1588880273029" duration="1635000" />
       <workItem from="1588932332721" duration="2496000" />
+      <workItem from="1589470203010" duration="195000" />
+      <workItem from="1589470451870" duration="1418000" />
+      <workItem from="1589472159067" duration="1299000" />
+      <workItem from="1589705092992" duration="568000" />
+      <workItem from="1589715507800" duration="968000" />
+      <workItem from="1589794794793" duration="2599000" />
+      <workItem from="1589884608005" duration="1026000" />
+      <workItem from="1589924355192" duration="112000" />
+      <workItem from="1589924500452" duration="297000" />
     </task>
     <servers />
   </component>
@@ -217,12 +227,13 @@
     </state>
     <state x="761" y="328" key="NewPhpFileDialog/0.0.1440.900@0.0.1440.900" timestamp="1588175061554" />
     <state x="780" y="450" key="NewPhpFileDialog/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1588533552329" />
-    <state x="691" y="135" width="997" height="759" key="SettingsEditor" timestamp="1588930514807">
+    <state x="646" y="236" width="997" height="759" key="SettingsEditor" timestamp="1589924804204">
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state x="173" y="31" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1588521823592" />
-    <state x="207" y="37" width="997" height="759" key="SettingsEditor/0.23.1440.820@0.23.1440.820" timestamp="1588897799573" />
-    <state x="691" y="135" key="SettingsEditor/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1588930514807" />
+    <state x="207" y="37" width="997" height="759" key="SettingsEditor/0.23.1440.820@0.23.1440.820" timestamp="1589794851776" />
+    <state x="575" y="171" key="SettingsEditor/1920.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1589862627919" />
+    <state x="646" y="236" key="SettingsEditor/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1589924804204" />
     <state x="380" y="265" key="com.intellij.ide.util.TipDialog" timestamp="1588879897049">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
@@ -234,11 +245,16 @@
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state width="600" height="440" key="javadoc.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1586149641752" />
-    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup" timestamp="1588933961561">
+    <state x="625" y="241" key="run.anything.popup" timestamp="1589924360091">
+      <screen x="0" y="23" width="1920" height="1000" />
+    </state>
+    <state x="625" y="241" key="run.anything.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1589924360091" />
+    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup" timestamp="1589933058837">
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state x="461" y="234" width="670" height="609" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1588189135026" />
     <state x="461" y="236" width="670" height="555" key="search.everywhere.popup/0.23.1440.820@0.23.1440.820" timestamp="1587968047151" />
-    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1588933961561" />
+    <state x="614" y="281" width="670" height="731" key="search.everywhere.popup/1920.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1589471731028" />
+    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1589933058837" />
   </component>
 </project>
