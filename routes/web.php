@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 Route::get('/forum', 'HomeController@forum_page')->name('forum');
+Route::get('/forum/brand/{name}', 'HomeController@brand_page')->name('brand_home');
+Route::get('/forum/brand/{name}/{slug}', 'HomeController@gadget_page')->name('gadget_home');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
     //Manage Brand

@@ -16,10 +16,9 @@
             <p class="grey-text font-regular uk-text-middle"
                style="font-size: 15px;margin-bottom: 5px;margin-top: 5px;">{{\Carbon\Carbon::parse(\Carbon\Carbon::today())->format('l, d F Y')}}</p>
             <div class="account uk-position-right" style="top: 10px;right: 20px;cursor: pointer">
-                <img src="{{asset('img/user.svg')}}"
-                     style="height: 40px;width: 40px;border-radius: 40px;margin-right: 10px;" uk-img alt="">
+                <div class="card-photo" style="margin-right: 10px;background-image: url({{asset('img/user.svg')}})" uk-img alt="Profile Picture"></div>
                 <span class="brand-chip font-regular uk-text-middle grey-text-2"
-                      style="font-size: 14px;">{{\Illuminate\Support\Facades\Auth::user()->name}} <span
+                      style="font-size: 14px;position:relative;top: -15px;">{{\Illuminate\Support\Facades\Auth::user()->name}} <span
                         uk-icon="icon: chevron-down" type="button" style="margin-left: 10px;"></span></span>
             </div>
             <div uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;"
@@ -159,3 +158,5 @@
     chart_brand.render();
     chart_gadget.render();
 </script>
+</body>
+</html>

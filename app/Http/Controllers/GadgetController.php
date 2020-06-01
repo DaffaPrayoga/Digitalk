@@ -6,6 +6,7 @@ use App\Brand;
 use App\Gadget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Psy\Util\Str;
 
 class GadgetController extends Controller
 {
@@ -54,6 +55,7 @@ class GadgetController extends Controller
             $new->battery = $request['battery'];
             $new->os = $request['os'];
             $new->storage = $request['storage'];
+            $new->slug = \Illuminate\Support\Str::slug($request['name']);
             if (!empty($request->file('image'))) {
                 $file = $request->file('image');
                 $fileName = $file->getClientOriginalName();
@@ -108,6 +110,7 @@ class GadgetController extends Controller
         try {
             $update = Gadget::find($id);
             $update->name = $request['name'];
+            $update->slug = \Illuminate\Support\Str::slug($request['name']);
             if (!empty($request->file('image'))) {
                 $file = $request->file('image');
                 $fileName = $file->getClientOriginalName();

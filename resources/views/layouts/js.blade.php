@@ -64,11 +64,11 @@
             }
         });
     });
-    // ClassicEditor
-    //     .create( document.querySelector( '#editor' ) )
-    //     .catch( error => {
-    //         console.error( error );
-    //     } );
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
 
 </script>
 @if (session('alert'))
@@ -114,6 +114,4 @@
             html: true,
         });
     </script>
-    @endif
-    </body>
-</html>
+@endif

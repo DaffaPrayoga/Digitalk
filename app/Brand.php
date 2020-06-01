@@ -18,7 +18,7 @@ class Brand extends Model
 
     public function countGadget()
     {
-        $count = Gadget::where('brand_id', $this->brand_id)->get()->count();
+        $count = Gadget::where('brand_id', $this->id)->count();
         return $count;
     }
 }

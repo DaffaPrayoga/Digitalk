@@ -9,9 +9,9 @@
     @include('layouts.navbar')
 @show
 <div class="uk-container uk-margin-medium-top">
-    <div class="uk-card uk-card-default uk-card-body uk-border-rounded bg-gradient-noshadow" style="z-index: -2;border-radius: 20px;">
+    <div class="uk-card uk-card-default uk-card-body uk-border-rounded bg-gradient-noshadow uk-animation-scale-down delay-animation" style="z-index: -2;border-radius: 20px;">
         <div class="uk-container">
-            <img src="{{asset('img/header.png')}}" uk-img style="height: 400px;z-index: -1"
+            <img src="{{asset('img/header.png')}}" uk-img style="height: 400px;z-index: -1;"
                  class="uk-position-bottom-right" alt="">
             <h3 class="white-text font-heavy uk-heading-medium uk-position-z-index">Lagi pengen<br>bahas gadget apa?
             </h3>
@@ -67,3 +67,5 @@
 @section('js')
     @include('layouts.js')
 @show
+</body>
+</html>
