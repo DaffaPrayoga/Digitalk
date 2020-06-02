@@ -42,8 +42,8 @@ class BrandController extends Controller
             $new = new Brand();
             $new->name = $request['name'];
             $file = $request->file('image');
-            $fileName = $file->getClientOriginalName();
-            $namafile = "brand_" . $fileName;
+            $file_enx = $file->getClientOriginalExtension();
+            $namafile = "brand_" . str_replace(' ', '', $new->name) . "." . $file_enx;
             $request->file('image')->move("img/brand_logo/", $namafile);
             $new->image = $namafile;
             $new->save();
@@ -94,8 +94,8 @@ class BrandController extends Controller
             $update->name = $request['name'];
             if (!empty($request->file('image'))) {
                 $file = $request->file('image');
-                $fileName = $file->getClientOriginalName();
-                $namafile = "brand_" . $fileName;
+                $file_enx = $file->getClientOriginalExtension();
+                $namafile = "brand_" . str_replace(' ', '', $update->name) . "." . $file_enx;
                 $request->file('image')->move("img/brand_logo/", $namafile);
                 $update->image = $namafile;
             }

@@ -9,6 +9,7 @@
 <script type="text/javascript" src="{{asset('js/sweetalert.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/dataTables.material.min.js')}}"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"></script>
+<script type="text/javascript" src="{{asset('js/tata.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script type="text/javascript">
@@ -35,6 +36,14 @@
             } else {
                 swal.close();
             }
+        });
+    }
+
+    function warning_toast(message) {
+        tata.warn('', message, {
+            'animate': 'slide',
+            'position': 'br',
+            'duration': '6000',
         });
     }
 
@@ -112,6 +121,42 @@
             confirmButtonColor: "#789904",
             closeOnConfirm: true,
             html: true,
+        });
+    </script>
+@endif
+@if(session('toast_success'))
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            // Animate loader off screen
+            tata.success('', '{{session('toast_success')}}', {
+                'animate': 'slide',
+                'position': 'br',
+                'duration': '6000',
+            });
+        });
+    </script>
+@endif
+@if(session('toast_warning'))
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            // Animate loader off screen
+            tata.warn('', '{{session('toast_warning')}}', {
+                'animate': 'slide',
+                'position': 'br',
+                'duration': '6000',
+            });
+        });
+    </script>
+@endif
+@if(session('toast_error'))
+    <script type="text/javascript">
+        $(window).on("load", function () {
+            // Animate loader off screen
+            tata.error('', '{{session('toast_error')}}', {
+                'animate': 'slide',
+                'position': 'br',
+                'duration': '6000',
+            });
         });
     </script>
 @endif

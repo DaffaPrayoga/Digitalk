@@ -58,9 +58,9 @@ class GadgetController extends Controller
             $new->slug = \Illuminate\Support\Str::slug($request['name']);
             if (!empty($request->file('image'))) {
                 $file = $request->file('image');
-                $fileName = $file->getClientOriginalName();
-                $namafile = "gadget_" . $fileName;
-                $request->file('image')->move("img/gadgets/", $namafile);
+                $file_enx = $file->getClientOriginalExtension();
+                $namafile = "gadget_" . str_replace(' ', '', $new->name) . "." . $file_enx;
+                $request->file('image')->move("img/gadget/", $namafile);
                 $new->image = $namafile;
             }
             $new->save();
@@ -113,9 +113,9 @@ class GadgetController extends Controller
             $update->slug = \Illuminate\Support\Str::slug($request['name']);
             if (!empty($request->file('image'))) {
                 $file = $request->file('image');
-                $fileName = $file->getClientOriginalName();
-                $namafile = "gadget_" . $fileName;
-                $request->file('image')->move("img/gadgets/", $namafile);
+                $file_enx = $file->getClientOriginalExtension();
+                $namafile = "gadget_" . str_replace(' ', '', $update->name) . "." . $file_enx;
+                $request->file('image')->move("img/gadget/", $namafile);
                 $update->image = $namafile;
             }
             $update->update();

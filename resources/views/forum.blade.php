@@ -30,7 +30,7 @@
                        style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$b->countGadget()}}
                         Gadgets</a><br><br>
                     <a href="{{route('brand_home', $b->name)}}" class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                       style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">+234
+                       style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$b->countThread()}}
                         Threads</a>
                 </div>
             </div>

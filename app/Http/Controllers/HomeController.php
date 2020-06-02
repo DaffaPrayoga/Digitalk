@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Brand;
 use App\Gadget;
+use App\Thread;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -41,8 +42,11 @@ class HomeController extends Controller
             return redirect()->route('forum');
         } else {
             $data = Gadget::where('brand_id', $brands->id)->orderBy('created_at', 'desc')->get();
+            $threads = Thread::where([
+                ['brand_id', $brands->id],
+            ])->orderBy('created_at', 'desc')->paginate(10);
         }
-        return view('brand', compact('brands', 'data'));
+        return view('brand', compact('brands', 'data', 'threads'));
     }
 
     public function gadget_page($name, $slug)
@@ -55,7 +59,11 @@ class HomeController extends Controller
             if (empty($gadget)) {
                 return redirect()->route('brand_home', $brands->name);
             } else {
-                return view('gadget', compact('brands', 'gadget'));
+                $threads = Thread::where([
+                    ['brand_id', $brands->id],
+                    ['gadget_id', $gadget->id],
+                ])->orderBy('created_at', 'desc')->paginate(10);
+                return view('gadget', compact('brands', 'gadget', 'threads'));
             }
         }
     }

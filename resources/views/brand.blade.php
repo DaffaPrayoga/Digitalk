@@ -32,9 +32,90 @@
              alt="">
     </div>
     <p class="grey-text-1 font-regular">{{$brands->name}} Threads :</p>
+    <div id="modal-sections" uk-modal>
+        <div class="uk-modal-dialog" style="border-radius: 20px !important;">
+            <button class="uk-modal-close-default uk-icon-button" type="button" uk-close></button>
+            <div class="uk-modal-body" style="border-radius: 20px !important;">
+                <h2 class="uk-modal-title font-heavy grey-text-4" style="font-size: 1.9rem;">Create a thread</h2>
+                <ul class="uk-child-width-expand" uk-tab>
+                    <li class="thread-tab-post"><a onclick="postTabOpen()" href="#" class="font-bold grey-text-3"><span
+                                class="uk-margin-small-right" uk-icon="icon: pencil"></span>Post</a></li>
+                    <li class="thread-tab-image"><a onclick="imageTabOpen()" href="#"
+                                                    class="font-bold grey-text-3"><span class="uk-margin-small-right"
+                                                                                        uk-icon="icon: camera"></span>
+                            Image</a></li>
+                    <li class="thread-tab-video"><a onclick="videoTabOpen()" href="#"
+                                                    class="font-bold grey-text-3"><span
+                                class="uk-margin-small-right" uk-icon="icon: video-camera"></span> Video</a></li>
+                </ul>
+                <div id="post">
+                    <form action="{{route('create_thread')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="uk-inline uk-width-1-1">
+                            <input class="uk-input form-looks font-light" placeholder="Judul thread"
+                                   style="height: 50px;font-size: 14px;" name="title" type="text" required>
+                        </div>
+                        <div class="uk-inline uk-width-1-1" style="margin-top: 30px;">
+                            <textarea id="editor" name="article" style="min-height: 200px;">Tulis artikel thread disini (Optional)</textarea>
+                        </div>
+                        <input type="hidden" name="brand_id" value="{{$brands->id}}">
+                        <input type="hidden" name="thread_type" value="0">
+                        <input type="hidden" name="returnTo" value="{{url()->current()}}">
+                        <button class="uk-button bg-gradient white-text uk-border-rounded uk-margin-medium-top"
+                                type="submit">Submit
+                        </button>
+                    </form>
+                </div>
+                <div id="image">
+                    <form action="{{route('create_thread')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="uk-inline uk-width-1-1">
+                            <input class="uk-input form-looks font-light" placeholder="Judul thread"
+                                   style="height: 50px;font-size: 14px;" name="title" type="text" required>
+                        </div>
+                        <div class="uk-inline uk-width-1-1" style="margin-top: 10px;">
+                            <label class="uk-form-label" for="form-stacked-text">Image</label>
+                            <div uk-form-custom="target: true" class="uk-width-1">
+                                <input type="file" name="image" required>
+                                <input class="uk-input font-light form-looks uk-border-rounded" type="text"
+                                       style="height: 50px;font-size: 14px;"
+                                       placeholder="Click to select image" disabled>
+                            </div>
+                        </div>
+                        <input type="hidden" name="brand_id" value="{{$brands->id}}">
+                        <input type="hidden" name="thread_type" value="1">
+                        <input type="hidden" name="returnTo" value="{{url()->current()}}">
+                        <button class="uk-button bg-gradient white-text uk-border-rounded uk-margin-medium-top"
+                                type="submit">Submit
+                        </button>
+                    </form>
+                </div>
+                <div id="video">
+                    <form action="{{route('create_thread')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="uk-inline uk-width-1-1">
+                            <input class="uk-input form-looks font-light" placeholder="Judul thread"
+                                   style="height: 50px;font-size: 14px;" name="title" type="text" required>
+                        </div>
+                        <div class="uk-inline uk-width-1-1" style="margin-top: 20px;">
+                            <input class="uk-input form-looks font-light" placeholder="Link video (embed)"
+                                   style="height: 50px;font-size: 14px;" name="video_embed_link" type="text" required>
+                        </div>
+                        <input type="hidden" name="brand_id" value="{{$brands->id}}">
+                        <input type="hidden" name="thread_type" value="2">
+                        <input type="hidden" name="returnTo" value="{{url()->current()}}">
+                        <button class="uk-button bg-gradient white-text uk-border-rounded uk-margin-medium-top"
+                                type="submit">Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="uk-grid uk-margin-small-top" uk-grid>
         <div class="uk-width-expand">
-            <div class="uk-card uk-card-default hoverable uk-card-small uk-card-body z-depth-15" style="border-radius: 10px;">
+            <div class="uk-card uk-card-default hoverable uk-card-small uk-card-body z-depth-15"
+                 style="border-radius: 10px;">
                 <div class="uk-grid" uk-grid>
                     <div class="uk-width-auto">
                         <div class="card-photo"
@@ -45,111 +126,83 @@
                         <div class="uk-margin">
                             <div class="uk-inline uk-width-1-1">
                                 <span class="uk-form-icon" uk-icon="icon: pencil"></span>
-                                <input class="uk-input form-looks font-light" placeholder="Create a thread..."
+                                <input class="uk-input form-looks font-light"
+                                       @if(\Illuminate\Support\Facades\Auth::check()) uk-toggle="target: #modal-sections"
+                                       @else onclick="warning_toast('Please login first before you can make a thread.')"
+                                       @endif
+                                       placeholder="Create a thread..."
                                        style="height: 50px;font-size: 14px;" name="email" type="text" required>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="thread-card uk-card uk-card-default uk-card-small uk-card-body z-depth-15 uk-margin-top hoverable"
-                 style="border-radius: 10px;">
-                <div class="uk-grid" uk-grid>
-                    <div class="uk-width-auto">
-                        <div class="uk-width-1-1">
-                            <a href="#" class="uk-icon-button" uk-icon="arrow-up"></a>
+            @forelse($threads as $t)
+                <div
+                    class="thread-card uk-card uk-card-default uk-card-small uk-card-body z-depth-15 uk-margin-top hoverable"
+                    style="border-radius: 10px;">
+                    <div class="uk-grid" uk-grid>
+                        <div class="uk-width-auto">
+                            <div class="uk-width-1-1">
+                                <a href="#" class="uk-icon-button" uk-icon="arrow-up"></a>
+                            </div>
+                            <div class="uk-width-1-1">
+                                <p class="grey-text-3 font-bold uk-text-center"
+                                   style="margin-top: 15px;margin-bottom: 10px;">{{$t->getVoteAttribute()}}</p>
+                            </div>
+                            <div class="uk-width-1-1">
+                                <a href="#" class="uk-icon-button" uk-icon="arrow-down"></a>
+                            </div>
                         </div>
-                        <div class="uk-width-1-1">
-                            <p class="grey-text-3 font-bold uk-text-center"
-                               style="margin-top: 15px;margin-bottom: 10px;">254</p>
-                        </div>
-                        <div class="uk-width-1-1">
-                            <a href="#" class="uk-icon-button" uk-icon="arrow-down"></a>
-                        </div>
-                    </div>
-                    <div class="uk-width-1-2 uk-width-expand">
-                        <div class="uk-margin">
-                            <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#" class="accent-color-2 font-regular">Daffascript</a> • 16 hours ago</p>
-                            <a href="#" class="grey-text-3 font-extrabold" style="font-size: 19px;top: -15px;position:relative">Apa sih ga
-                                enaknya pake Iphone dan keenakannya?</a>
-{{--                            <a href="#"--}}
-{{--                               class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"--}}
-{{--                               style="border: none;margin-right: 10px;margin-bottom: 15px;">--}}
-{{--                                Discuss--}}
-{{--                            </a>--}}
-                            <div class="tags" style="margin-bottom: 10px;">
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                   style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$brands->name}}</span>
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">IPhone 11 Pro</span>
+                        <div class="uk-width-1-2 uk-width-expand">
+                            <div class="uk-margin">
+                                <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#"
+                                                                                                       class="accent-color-2 font-regular">{{$t->creator->name}}</a>
+                                    • {{\Illuminate\Support\Carbon::parse($t->created_at)->diffForHumans()}}</p>
+                                <a href="#" class="grey-text-3 font-extrabold"
+                                   style="font-size: 19px;top: -15px;position:relative">{{$t->title}}</a>
+                                @if($t->thread_type == 0)
+                                    @if(!empty($t->article))
+                                        <p class="grey-text-1 font-light"
+                                           style="margin-top: -5px;">{!!\Illuminate\Support\Str::limit($t->article, 40, '[..]')!!}</p>
+                                    @endif
+                                @elseif($t->thread_type == 1)
+                                    <img data-src="{{asset('img/thread_images/'.$t->image)}}" width="90%"
+                                         class="z-depth-15"
+                                         height="auto" uk-img style="margin-bottom: 30px;border-radius: 10px;" alt="">
+                                @elseif($t->thread_type == 2)
+                                    <iframe class="z-depth-15" src="{{$t->video_embed_link}}" title="Thread embed video"
+                                            width="90%" height="400"
+                                            style="margin-bottom: 30px;border-radius: 10px;"></iframe>
+                                @endif
+                                <div class="tags" style="margin-bottom: 10px;">
+                                    @if(!empty($t->brand_id))
+                                        <a href="{{route('brand_home', $t->brand->name)}}"
+                                           class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
+                                           style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$t->brand->name}}</a>
+                                    @endif
+                                    @if(!empty($t->gadget_id))
+                                        <a href="{{url('forum/brand/' . $t->brand->name, $t->gadget->slug)}}"
+                                           class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
+                                           style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$t->gadget->name}}</a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="thread-card uk-card uk-card-default uk-card-small uk-card-body z-depth-15 uk-margin-top hoverable"
-                 style="border-radius: 10px;">
-                <div class="uk-grid" uk-grid>
-                    <div class="uk-width-auto">
-                        <div class="uk-width-1-1">
-                            <a href="#" class="uk-icon-button" uk-icon="arrow-up"></a>
-                        </div>
-                        <div class="uk-width-1-1">
-                            <p class="grey-text-3 font-bold uk-text-center"
-                               style="margin-top: 15px;margin-bottom: 10px;">102</p>
-                        </div>
-                        <div class="uk-width-1-1">
-                            <a href="#" class="uk-icon-button" uk-icon="arrow-down"></a>
-                        </div>
-                    </div>
-                    <div class="uk-width-1-2 uk-width-expand">
-                        <div class="uk-margin">
-                            <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#" class="accent-color-2 font-regular">OpiekBelerang</a> • 18 hours ago</p>
-                            <a href="#" class="grey-text-3 font-extrabold" style="font-size: 19px;top: -15px;position:relative">Bahahahhaa anjir kayak boba xD</a>
-                            <img data-src="{{asset('img/thread_images/thread_1.jpg')}}" width="90%" class="z-depth-15" height="auto" uk-img style="margin-bottom: 30px;"  alt="">
-                            <div class="tags" style="margin-bottom: 10px;">
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$brands->name}}</span>
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">IPhone 11 Pro</span>
-                            </div>
-                        </div>
-                    </div>
+            @empty
+                <div class="uk-text-center">
+                    <img src="{{asset('img/no_thread.svg')}}" uk-img style="height: 170px;margin-top: 40px;" alt="">
+                    <p class="grey-text-3 font-extrabold" style="font-size: 25px;">No thread yet.</p>
+                    <p class="grey-text-1 font-regular" style="font-size: 17px;margin-top: -15px;">no thread made with
+                        this brand.</p>
                 </div>
-            </div>
-            <div class="thread-card uk-card uk-card-default uk-card-small uk-card-body z-depth-15 uk-margin-top hoverable"
-                 style="border-radius: 10px;">
-                <div class="uk-grid" uk-grid>
-                    <div class="uk-width-auto">
-                        <div class="uk-width-1-1">
-                            <a href="#" class="uk-icon-button" uk-icon="arrow-up"></a>
-                        </div>
-                        <div class="uk-width-1-1">
-                            <p class="grey-text-3 font-bold uk-text-center"
-                               style="margin-top: 15px;margin-bottom: 10px;">130</p>
-                        </div>
-                        <div class="uk-width-1-1">
-                            <a href="#" class="uk-icon-button" uk-icon="arrow-down"></a>
-                        </div>
-                    </div>
-                    <div class="uk-width-1-2 uk-width-expand">
-                        <div class="uk-margin">
-                            <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#" class="accent-color-2 font-regular">Shrewdtam</a> • 20 hours ago</p>
-                            <a href="#" class="grey-text-3 font-extrabold" style="font-size: 19px;top: -15px;position:relative">IPhone gabisa nyalain personal hotspot.</a>
-                            <p class="grey-text-1 font-light" style="margin-top: -5px;">ini IPhone emang susah yak buat nyalain personal hotspot nya? ane pake telkomsel gan tapi dibilang harus contact provider inet nya dulu. ada yg tau cara aktifin personal hotspot nya?</p>
-                            <div class="tags" style="margin-bottom: 10px;">
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$brands->name}}</span>
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">IPhone 11 Pro</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
         <div class="uk-width-1-3">
-            <div class="uk-card uk-card-default uk-card-small uk-card-body z-depth-15" uk-sticky="offset: 110; bottom: #top" style="border-radius: 10px;">
+            <div class="uk-card uk-card-default uk-card-small uk-card-body z-depth-15"
+                 uk-sticky="offset: 110; bottom: #top" style="border-radius: 10px;">
                 <div class="uk-padding-small">
                     <p class="grey-text-3 font-heavy" style="font-size: 20px;">{{$brands->name}} Devices :</p>
                     <div style="margin-top: 20px;">
@@ -161,9 +214,11 @@
                             </a>
                         @empty
                             <div class="uk-text-center">
-                                <img src="{{asset('img/no_gadget_3.svg')}}" uk-img style="height: 150px;margin-top: 30px;" alt="">
+                                <img src="{{asset('img/no_gadget_3.svg')}}" uk-img
+                                     style="height: 150px;margin-top: 30px;" alt="">
                                 <p class="grey-text-3 font-extrabold" style="font-size: 18px;">No Device Registered</p>
-                                <p class="grey-text-1 font-regular" style="font-size: 16px;margin-top: -20px;">no device for this
+                                <p class="grey-text-1 font-regular" style="font-size: 16px;margin-top: -20px;">no device
+                                    for this
                                     brand.</p>
                             </div>
                         @endforelse
@@ -176,5 +231,38 @@
 @section('js')
     @include('layouts.js')
 @show
+<script type="text/javascript">
+    $('.thread-tab-post').addClass('uk-active');
+    $('#post').show();
+    $('#image').hide();
+    $('#video').hide();
+
+    function imageTabOpen() {
+        $('.thread-tab-post').removeClass('uk-active');
+        $('.thread-tab-image').addClass('uk-active');
+        $('.thread-tab-video').removeClass('uk-active');
+        $('#post').hide();
+        $('#image').show();
+        $('#video').hide();
+    }
+
+    function videoTabOpen() {
+        $('.thread-tab-post').removeClass('uk-active');
+        $('.thread-tab-image').removeClass('uk-active');
+        $('.thread-tab-video').addClass('uk-active');
+        $('#post').hide();
+        $('#image').hide();
+        $('#video').show();
+    }
+
+    function postTabOpen() {
+        $('.thread-tab-post').addClass('uk-active');
+        $('.thread-tab-image').removeClass('uk-active');
+        $('.thread-tab-video').removeClass('uk-active');
+        $('#post').show();
+        $('#image').hide();
+        $('#video').hide();
+    }
+</script>
 </body>
 </html>

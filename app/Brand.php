@@ -21,4 +21,10 @@ class Brand extends Model
         $count = Gadget::where('brand_id', $this->id)->count();
         return $count;
     }
+
+    public function countThread()
+    {
+        $count = Thread::where('brand_id', $this->id)->count();
+        return $count;
+    }
 }
