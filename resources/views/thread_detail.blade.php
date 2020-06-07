@@ -8,125 +8,9 @@
 @section('navbar')
     @include('layouts.navbar')
 @show
-<div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
-    <div class="uk-padding" style="background: #f5f5f5;border-radius: 20px;">
-        <div class="z-depth-12 uk-animation-toggle white uk-animation-scale-up delay-animation" tabindex="0"
-             style="padding: 10px 40px;border-radius: 30px;display: inline-block;">
-            <img class="uk-align-center" src="{{asset('img/brand_logo/'.$brands->image)}}"
-                 style="height: 30px;margin-top: 24px;margin-bottom: 35px;" alt="">
-        </div>
-        <p class="font-heavy grey-text-4 uk-heading-small uk-animation-slide-left uk-animation-toggle"
-           style="display: inline-block;top: -35px;left: 20px;position: relative;animation-delay: 0.9s">{{$gadget->name}}
-            <span
-                class="accent-color">.</span></p>
-        <ul class="uk-breadcrumb uk-animation-toggle uk-animation-slide-bottom"
-            style="position:absolute;margin-top: -15px;animation-delay: 1s;">
-            <li><a class="uk-text-capitalize" href="{{url(request()->segment(1))}}">{{request()->segment(1)}}</a></li>
-            <li><a class="uk-text-capitalize" href="{{url(request()->segment(1))}}">{{request()->segment(2)}}</a></li>
-            <li><a class="uk-text-capitalize"
-                   href="{{url(request()->segment(1) . "/" . request()->segment(2) . "/" . request()->segment(3))}}">{{request()->segment(3)}}</a>
-            </li>
-            <li><a class="uk-text-capitalize"
-                   href="{{url(request()->segment(1) . "/" . request()->segment(2) . "/" . request()->segment(3) . "/" . request()->segment(4))}}">{{$gadget->name}}</a>
-            </li>
-        </ul>
-        <img src="{{asset('img/no_gadget_4.svg')}}" class="uk-animation-scale-down" uk-img
-             style="height: 110px;top: 15px;float: right;position:relative;animation-delay: 1.4s"
-             alt="">
-    </div>
-    <p class="grey-text-1 font-regular">{{$gadget->name}} Threads :</p>
-    <div id="modal-sections" uk-modal>
-        <div class="uk-modal-dialog" style="border-radius: 20px !important;">
-            <button class="uk-modal-close-default uk-icon-button" type="button" uk-close></button>
-            <div class="uk-modal-body" style="border-radius: 20px !important;">
-                <h2 class="uk-modal-title font-heavy grey-text-4" style="font-size: 1.9rem;">Create a thread</h2>
-                <ul class="uk-child-width-expand" uk-tab>
-                    <li class="thread-tab-post"><a onclick="postTabOpen()" href="#" class="font-bold grey-text-3"><span
-                                class="uk-margin-small-right" uk-icon="icon: pencil"></span>Post</a></li>
-                    <li class="thread-tab-image"><a onclick="imageTabOpen()" href="#"
-                                                    class="font-bold grey-text-3"><span class="uk-margin-small-right"
-                                                                                        uk-icon="icon: camera"></span>
-                            Image</a></li>
-                    <li class="thread-tab-video"><a onclick="videoTabOpen()" href="#"
-                                                    class="font-bold grey-text-3"><span
-                                class="uk-margin-small-right" uk-icon="icon: video-camera"></span> Video</a></li>
-                </ul>
-                <div id="post">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="uk-inline uk-width-1-1">
-                            <input class="uk-input form-looks font-light" placeholder="Judul thread"
-                                   style="height: 50px;font-size: 14px;" name="text" type="text" required>
-                        </div>
-                        <div class="uk-inline uk-width-1-1" style="margin-top: 30px;">
-                            <textarea id="editor" name="detail" style="min-height: 200px;" required>Tulis artikel thread disini (Optional)</textarea>
-                        </div>
-                        <button class="uk-button bg-gradient white-text uk-border-rounded uk-margin-medium-top"
-                                type="submit">Submit
-                        </button>
-                    </form>
-                </div>
-                <div id="image">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="uk-inline uk-width-1-1">
-                            <input class="uk-input form-looks font-light" placeholder="Judul thread"
-                                   style="height: 50px;font-size: 14px;" name="text" type="text" required>
-                        </div>
-                        <div class="uk-inline uk-width-1-1" style="margin-top: 10px;">
-                            <label class="uk-form-label" for="form-stacked-text">Image</label>
-                            <div uk-form-custom="target: true" class="uk-width-1">
-                                <input type="file" name="image" required>
-                                <input class="uk-input font-light form-looks uk-border-rounded" type="text" style="height: 50px;font-size: 14px;"
-                                       placeholder="Click to select image" disabled>
-                            </div>
-                        </div>
-                        <button class="uk-button bg-gradient white-text uk-border-rounded uk-margin-medium-top"
-                                type="submit">Submit
-                        </button>
-                    </form>
-                </div>
-                <div id="video">
-                    <form action="" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="uk-inline uk-width-1-1">
-                            <input class="uk-input form-looks font-light" placeholder="Judul thread"
-                                   style="height: 50px;font-size: 14px;" name="text" type="text" required>
-                        </div>
-                        <div class="uk-inline uk-width-1-1" style="margin-top: 20px;">
-                            <input class="uk-input form-looks font-light" placeholder="Link video (embed)"
-                                   style="height: 50px;font-size: 14px;" name="text" type="text" required>
-                        </div>
-                        <button class="uk-button bg-gradient white-text uk-border-rounded uk-margin-medium-top"
-                                type="submit">Submit
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="uk-container uk-margin-small-top uk-margin-medium-bottom">
     <div class="uk-grid uk-margin-small-top" uk-grid>
         <div class="uk-width-expand">
-            <div class="uk-card uk-card-default hoverable uk-card-small uk-card-body z-depth-15"
-                 style="border-radius: 10px;">
-                <div class="uk-grid" uk-grid>
-                    <div class="uk-width-auto">
-                        <div class="card-photo"
-                             style="background-image: url({{asset('img/user.svg')}});"
-                             uk-img alt="Profile Picture"></div>
-                    </div>
-                    <div class="uk-width-1-2 uk-width-expand">
-                        <div class="uk-margin">
-                            <div class="uk-inline uk-width-1-1">
-                                <span class="uk-form-icon" uk-icon="icon: pencil"></span>
-                                <input class="uk-input form-looks font-light" uk-toggle="target: #modal-sections"
-                                       placeholder="Create a thread..."
-                                       style="height: 50px;font-size: 14px;" name="email" type="text" required>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div
                 class="thread-card uk-card uk-card-default uk-card-small uk-card-body z-depth-15 uk-margin-top hoverable"
                 style="border-radius: 10px;">
@@ -137,7 +21,7 @@
                         </div>
                         <div class="uk-width-1-1">
                             <p class="grey-text-3 font-bold uk-text-center"
-                               style="margin-top: 15px;margin-bottom: 10px;">254</p>
+                               style="margin-top: 15px;margin-bottom: 10px;">{{$data->getVoteAttribute()}}</p>
                         </div>
                         <div class="uk-width-1-1">
                             <a href="#" class="uk-icon-button" uk-icon="arrow-down"></a>
@@ -145,127 +29,131 @@
                     </div>
                     <div class="uk-width-1-2 uk-width-expand">
                         <div class="uk-margin">
-                            <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#"
-                                                                                                   class="accent-color-2 font-regular">Daffascript</a>
-                                • 16 hours ago</p>
+                            <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#" class="accent-color font-regular">{{$data->creator->name}}</a>
+                                • {{\Illuminate\Support\Carbon::parse($data->created_at)->diffForHumans()}} <span
+                                    uk-icon="icon: commenting" class="uk-position-right"
+                                    style="padding-top:20px;padding-right:20px;height: 20px;"></span><span
+                                    class="disqus-comment-count uk-position-right"
+                                    style="padding-top: 20px;padding-right:20px;right: 30px;height: 20px;"
+                                    data-disqus-url="{{route('thread_detail', $data->thread_key)}}"></span></p>
                             <a href="#" class="grey-text-3 font-extrabold"
-                               style="font-size: 19px;top: -15px;position:relative">Apa sih ga
-                                enaknya pake Iphone dan keenakannya?</a>
-                            {{--                            <a href="#"--}}
-                            {{--                               class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"--}}
-                            {{--                               style="border: none;margin-right: 10px;margin-bottom: 15px;">--}}
-                            {{--                                Discuss--}}
-                            {{--                            </a>--}}
+                               style="font-size: 19px;top: -15px;position:relative">{{$data->title}}</a>
+                            @if($data->thread_type == 0)
+                                @if(!empty($data->article))
+                                    <p class="grey-text-1 font-light"
+                                       style="margin-top: -10px;">{{\Illuminate\Support\Str::limit(strip_tags($data->article), 160, '[..]')}}</p>
+                                @endif
+                            @elseif($data->thread_type == 1)p
+                                <img data-src="{{asset('img/thread_images/'.$data->image)}}" width="90%"
+                                     class="z-depth-15"
+                                     height="auto" uk-img style="margin-bottom: 30px;border-radius: 10px;" alt="">
+                            @elseif($data->thread_type == 2)
+                                <iframe class="z-depth-15" src="{{$data->video_embed_link}}" title="Thread embed video"
+                                        width="90%" height="400"
+                                        style="margin-bottom: 30px;border-radius: 10px;"></iframe>
+                            @endif
                             <div class="tags" style="margin-bottom: 10px;">
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$brands->name}}</span>
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">IPhone 11 Pro</span>
+                                @if(!empty($data->brand_id))
+                                    <a href="{{route('brand_home', $data->brand->name)}}"
+                                       class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
+                                       style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$data->brand->name}}</a>
+                                @endif
+                                @if(!empty($data->gadget_id))
+                                    <a href="{{url('forum/brand/' . $data->brand->name, $data->gadget->slug)}}"
+                                       class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
+                                       style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$data->gadget->name}}</a>
+                                @endif
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="thread-card uk-card uk-card-default uk-card-small uk-card-body z-depth-15 uk-margin-top hoverable"
-                style="border-radius: 10px;">
-                <div class="uk-grid" uk-grid>
-                    <div class="uk-width-auto">
-                        <div class="uk-width-1-1">
-                            <a href="#" class="uk-icon-button" uk-icon="arrow-up"></a>
-                        </div>
-                        <div class="uk-width-1-1">
-                            <p class="grey-text-3 font-bold uk-text-center"
-                               style="margin-top: 15px;margin-bottom: 10px;">102</p>
-                        </div>
-                        <div class="uk-width-1-1">
-                            <a href="#" class="uk-icon-button" uk-icon="arrow-down"></a>
-                        </div>
-                    </div>
-                    <div class="uk-width-1-2 uk-width-expand">
-                        <div class="uk-margin">
-                            <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#"
-                                                                                                   class="accent-color-2 font-regular">OpiekBelerang</a>
-                                • 18 hours ago</p>
-                            <a href="#" class="grey-text-3 font-extrabold"
-                               style="font-size: 19px;top: -15px;position:relative">Bahahahhaa anjir kayak boba xD</a>
-                            <img data-src="{{asset('img/thread_images/thread_1.jpg')}}" width="90%" class="z-depth-15"
-                                 height="auto" uk-img style="margin-bottom: 30px;" alt="">
-                            <div class="tags" style="margin-bottom: 10px;">
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$brands->name}}</span>
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">IPhone 11 Pro</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="thread-card uk-card uk-card-default uk-card-small uk-card-body z-depth-15 uk-margin-top hoverable"
-                style="border-radius: 10px;">
-                <div class="uk-grid" uk-grid>
-                    <div class="uk-width-auto">
-                        <div class="uk-width-1-1">
-                            <a href="#" class="uk-icon-button" uk-icon="arrow-up"></a>
-                        </div>
-                        <div class="uk-width-1-1">
-                            <p class="grey-text-3 font-bold uk-text-center"
-                               style="margin-top: 15px;margin-bottom: 10px;">130</p>
-                        </div>
-                        <div class="uk-width-1-1">
-                            <a href="#" class="uk-icon-button" uk-icon="arrow-down"></a>
-                        </div>
-                    </div>
-                    <div class="uk-width-1-2 uk-width-expand">
-                        <div class="uk-margin">
-                            <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#"
-                                                                                                   class="accent-color-2 font-regular">Shrewdtam</a>
-                                • 20 hours ago</p>
-                            <a href="#" class="grey-text-3 font-extrabold"
-                               style="font-size: 19px;top: -15px;position:relative">IPhone gabisa nyalain personal
-                                hotspot.</a>
-                            <p class="grey-text-1 font-light" style="margin-top: -5px;">ini IPhone emang susah yak buat
-                                nyalain personal hotspot nya? ane pake telkomsel gan tapi dibilang harus contact
-                                provider inet nya dulu. ada yg tau cara aktifin personal hotspot nya?</p>
-                            <div class="tags" style="margin-bottom: 10px;">
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$brands->name}}</span>
-                                <span class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
-                                      style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">IPhone 11 Pro</span>
-                            </div>
+                            <div id="disqus_thread" style="margin-top: 50px;"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="uk-width-1-3">
-            <div class="uk-card uk-card-default uk-card-small uk-card-body z-depth-15"
-                 uk-sticky="offset: 110; bottom: #top" style="border-radius: 10px;">
-                <div class="uk-padding-small">
-                    <div class="headerz" style="margin-top: -20px;">
-                        <img src="{{asset('img/no_gadget.svg')}}" uk-img style="height: 70px;display: inline-block"
-                             alt="">
-                        <p class="font-heavy grey-text-4"
-                           style="display:inline-block;position:relative;top: 5px;left: 10px;font-size: 20px;">{{$gadget->name}}</p>
+            @if(!empty($data->brand->id) || !empty($data->gadget->id))
+                <div class="uk-card uk-card-default uk-card-small uk-margin-top uk-card-body z-depth-15"
+                     style="border-radius: 10px;z-index: 500;">
+                    <div class="uk-padding-small">
+                        @if(!empty($data->brand->id))
+                            <div class="uk-text-center">
+                                <img src="{{asset('img/brand_logo/'.$data->brand->image)}}" uk-img
+                                     style="height: 30px;display: inline-block;margin-bottom: 20px;"
+                                     alt="">
+                            </div>
+                        @endif
+                        <hr class="uk-divider-icon">
+                        @if(!empty($data->gadget->id))
+                            <div class="gadget-detail">
+                                <div class="headerz">
+                                    <img src="{{asset('img/no_gadget.svg')}}" uk-img
+                                         style="height: 70px;display: inline-block"
+                                         alt="">
+                                    <p class="font-heavy grey-text-4"
+                                       style="display:inline-block;position:relative;top: 5px;left: 10px;font-size: 20px;">{{$data->gadget->name}}</p>
+                                </div>
+                                <div style="margin-top: 20px;">
+                                    <ul class="uk-list uk-list-divider font-light grey-text-1"
+                                        style="font-size: 0.9rem;">
+                                        <li>Released : <span
+                                                class="font-bold grey-text-3">{{$data->gadget->year_released}}</span>
+                                        </li>
+                                        <li>Price : <span
+                                                class="font-bold grey-text-3">Rp. {{number_format($data->gadget->price, 0, '.', '.')}}</span>
+                                        </li>
+                                        <li>Screen Size : <span
+                                                class="font-bold grey-text-3">{{$data->gadget->screen_size}} Inch</span>
+                                        </li>
+                                        <li>Resolution : <span
+                                                class="font-bold grey-text-3">{{$data->gadget->resolution}} Pixels</span>
+                                        </li>
+                                        <li>Camera : <span
+                                                class="font-bold grey-text-3">{{$data->gadget->camera_pixel}} MP</span>
+                                        </li>
+                                        <li>RAM : <span class="font-bold grey-text-3">{{$data->gadget->ram}} GB</span>
+                                        </li>
+                                        <li>Chip : <span class="font-bold grey-text-3">{{$data->gadget->chip}}</span>
+                                        </li>
+                                        <li>Battery : <span
+                                                class="font-bold grey-text-3">{{$data->gadget->battery}} mAh</span>
+                                        </li>
+                                        <li>OS : <span class="font-bold grey-text-3">{{$data->gadget->os}}</span></li>
+                                        <li>Storage : <span
+                                                class="font-bold grey-text-3">{{$data->gadget->storage}} GB</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
                     </div>
-                    <div style="margin-top: 20px;">
-                        <ul class="uk-list uk-list-divider font-light grey-text-1" style="font-size: 0.9rem;">
-                            <li>Released : <span class="font-bold grey-text-3">{{$gadget->year_released}}</span></li>
-                            <li>Price : <span
-                                    class="font-bold grey-text-3">Rp. {{number_format($gadget->price, 0, '.', '.')}}</span>
-                            </li>
-                            <li>Screen Size : <span class="font-bold grey-text-3">{{$gadget->screen_size}} Inch</span>
-                            </li>
-                            <li>Resolution : <span class="font-bold grey-text-3">{{$gadget->resolution}} Pixels</span>
-                            </li>
-                            <li>Camera : <span class="font-bold grey-text-3">{{$gadget->camera_pixel}} MP</span></li>
-                            <li>RAM : <span class="font-bold grey-text-3">{{$gadget->ram}} GB</span></li>
-                            <li>Chip : <span class="font-bold grey-text-3">{{$gadget->chip}}</span></li>
-                            <li>Battery : <span class="font-bold grey-text-3">{{$gadget->battery}} mAh</span></li>
-                            <li>OS : <span class="font-bold grey-text-3">{{$gadget->os}}</span></li>
-                            <li>Storage : <span class="font-bold grey-text-3">{{$gadget->storage}} GB</span></li>
-                        </ul>
+                </div>
+            @endif
+            <div class="uk-card uk-card-default uk-card-small uk-margin-top uk-card-body z-depth-15"
+                 uk-sticky="offset: 80; bottom: #top"
+                 style="border-radius: 10px;z-index: 500;">
+                <div class="uk-padding-small">
+                    <p class="font-extrabold grey-text-3 uk-text-center"
+                       style="font-size: 18px;">Find this thread disturbing?<br>Don't hesitate to <span
+                            class="accent-color">report!</span></p>
+                    <div class="uk-text-center">
+                        <button type="button"
+                           class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
+                           style="border: none;">
+                            Report
+                        </button>
+                        <div uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;offset: 20" style="border-radius: 10px;" class="z-depth-13">
+                            <p class="grey-text-3 font-extrabold">Why are you reporting this post?</p>
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="#">It's a spam</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li><a href="#">It's inapproriate</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li><a href="#">Other reason</a></li>
+                            </ul>
+                        </div>
+                        <form action="" method="post" enctype="multipart/form-data">
+
+                        </form>
                     </div>
                 </div>
             </div>
@@ -275,38 +163,23 @@
 @section('js')
     @include('layouts.js')
 @show
-<script type="text/javascript">
-    $('.thread-tab-post').addClass('uk-active');
-    $('#post').show();
-    $('#image').hide();
-    $('#video').hide();
+<script>
 
-    function imageTabOpen() {
-        $('.thread-tab-post').removeClass('uk-active');
-        $('.thread-tab-image').addClass('uk-active');
-        $('.thread-tab-video').removeClass('uk-active');
-        $('#post').hide();
-        $('#image').show();
-        $('#video').hide();
-    }
-
-    function videoTabOpen() {
-        $('.thread-tab-post').removeClass('uk-active');
-        $('.thread-tab-image').removeClass('uk-active');
-        $('.thread-tab-video').addClass('uk-active');
-        $('#post').hide();
-        $('#image').hide();
-        $('#video').show();
-    }
-
-    function postTabOpen() {
-        $('.thread-tab-post').addClass('uk-active');
-        $('.thread-tab-image').removeClass('uk-active');
-        $('.thread-tab-video').removeClass('uk-active');
-        $('#post').show();
-        $('#image').hide();
-        $('#video').hide();
-    }
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function () { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://digitalk-1.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
 </body>
 </html>

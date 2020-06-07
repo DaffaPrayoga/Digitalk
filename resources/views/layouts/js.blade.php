@@ -11,6 +11,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"></script>
 <script type="text/javascript" src="{{asset('js/tata.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script id="dsq-count-scr" src="//digitalk-1.disqus.com/count.js" async></script>
 
 <script type="text/javascript">
     $(window).on("load", function () {

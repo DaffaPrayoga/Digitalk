@@ -22,6 +22,10 @@
                     <span class="uk-form-icon" uk-icon="icon: user"></span>
                     <input class="uk-input form-looks font-light" placeholder="Email Address"
                            style="height: 50px;font-size: 14px;" name="email" type="text" required>
+                    @error('email')
+                    <span class="accent-color font-light"
+                          style="top: 5px;font-size: 0.8rem;position:relative;">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
             <div class="uk-margin">
@@ -29,6 +33,10 @@
                     <span class="uk-form-icon" uk-icon="icon: lock"></span>
                     <input class="uk-input form-looks font-light" placeholder="Password"
                            style="height: 50px;font-size: 14px;" name="password" type="password" required>
+                    @error('password')
+                    <span class="accent-color font-light"
+                          style="top: 5px;font-size: 0.8rem;position:relative;">{{ $message }}</span>
+                    @enderror
                 </div>
             </div>
             <button type="submit"

@@ -56,7 +56,8 @@
                                    style="height: 50px;font-size: 14px;" name="title" type="text" required>
                         </div>
                         <div class="uk-inline uk-width-1-1" style="margin-top: 30px;">
-                            <textarea id="editor" name="article" style="min-height: 200px;">Tulis artikel thread disini (Optional)</textarea>
+                            <label class="uk-form-label" for="form-stacked-text" style="position: relative;bottom: 10px;">Thread Article (Optional)</label>
+                            <textarea class="form-looks font-light uk-textarea" name="article" placeholder="ketik artikel disini" style="min-height: 150px;"></textarea>
                         </div>
                         <input type="hidden" name="brand_id" value="{{$brands->id}}">
                         <input type="hidden" name="thread_type" value="0">
@@ -156,15 +157,19 @@
                         </div>
                         <div class="uk-width-1-2 uk-width-expand">
                             <div class="uk-margin">
-                                <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#"
-                                                                                                       class="accent-color-2 font-regular">{{$t->creator->name}}</a>
-                                    • {{\Illuminate\Support\Carbon::parse($t->created_at)->diffForHumans()}}</p>
-                                <a href="#" class="grey-text-3 font-extrabold"
+                                <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#" class="accent-color font-regular">{{$t->creator->name}}</a>
+                                    • {{\Illuminate\Support\Carbon::parse($t->created_at)->diffForHumans()}} <span
+                                        uk-icon="icon: commenting" class="uk-position-right"
+                                        style="padding-top:20px;padding-right:20px;height: 20px;"></span><span
+                                        class="disqus-comment-count uk-position-right"
+                                        style="padding-top: 20px;padding-right:20px;right: 30px;height: 20px;"
+                                        data-disqus-url="{{route('thread_detail', $t->thread_key)}}"></span></p>
+                                <a href="{{route('thread_detail', $t->thread_key)}}" class="grey-text-3 font-extrabold"
                                    style="font-size: 19px;top: -15px;position:relative">{{$t->title}}</a>
                                 @if($t->thread_type == 0)
                                     @if(!empty($t->article))
                                         <p class="grey-text-1 font-light"
-                                           style="margin-top: -5px;">{!!\Illuminate\Support\Str::limit($t->article, 40, '[..]')!!}</p>
+                                           style="margin-top: -10px;">{{\Illuminate\Support\Str::limit(strip_tags($t->article), 160, '[..]')}}</p>
                                     @endif
                                 @elseif($t->thread_type == 1)
                                     <img data-src="{{asset('img/thread_images/'.$t->image)}}" width="90%"
@@ -202,7 +207,7 @@
         </div>
         <div class="uk-width-1-3">
             <div class="uk-card uk-card-default uk-card-small uk-card-body z-depth-15"
-                 uk-sticky="offset: 110; bottom: #top" style="border-radius: 10px;">
+                 uk-sticky="offset: 110; bottom: #top" style="border-radius: 10px;z-index: 500;">
                 <div class="uk-padding-small">
                     <p class="grey-text-3 font-heavy" style="font-size: 20px;">{{$brands->name}} Devices :</p>
                     <div style="margin-top: 20px;">

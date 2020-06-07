@@ -27,15 +27,45 @@
                     </li>
                 </ul>
                 <div class="uk-navbar-item uk-visible@m">
-                    <a href="#" style="margin-right: 15px;"
-                       class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-light grey-text uk-border-rounded">
-                        Sign Up
-                    </a>
-                    <a href="#"
-                       class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
-                       style="border: none;">
-                        Sign In
-                    </a>
+                    @if(\Illuminate\Support\Facades\Auth::check())
+                        <div class="account" style="top: 10px;right: 20px;cursor: pointer;border-radius: 30px;">
+                            <img src="{{asset('img/user.svg')}}"
+                                 style="height: 40px;width: 40px;border-radius: 40px;margin-right: 10px;" uk-img alt="">
+                            <span class="brand-chip font-extrabold uk-text-capitalize uk-text-middle grey-text-3"
+                                  style="font-size: 14px;">{{\Illuminate\Support\Facades\Auth::user()->name}} <span
+                                    uk-icon="icon: chevron-down" type="button" style="margin-left: 10px;margin-right: 10px;"></span></span>
+                        </div>
+                        <div uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;offset: 30"
+                             style="border-radius: 6px;z-index: 1000 !important;top: 100px !important;" class="z-depth-13">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li class="uk-nav-header font-extrabold" style="letter-spacing: 0.5px;">SETTING</li>
+                                <li><a class="font-light" href="#">Profile</a></li>
+                                <li><a class="font-light" href="#">Threads</a></li>
+                                <li>
+                                    <a href="{{route('logout')}}"
+                                       onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                                       class="uk-button uk-text-capitalize font-extrabold white-text uk-button-small uk-border-rounded bg-gradient"
+                                       style="border: none;margin-top: 20px;">
+                                        Sign Out
+                                    </a>
+                                </li>
+                                <form id="logout-form" action="{{ route('logout') }}"
+                                      onsubmit="event.preventDefault();comfirm_popup(this, 'Apakah kamu yakin ingin Sign Out?');"
+                                      method="POST" style="display: none;">
+                                    {{ csrf_field() }}</form>
+                            </ul>
+                        </div>
+                    @else
+                        <a href="#" style="margin-right: 15px;" uk-toggle="target: #modal-sign-up"
+                           class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold grey-text-2 uk-border-rounded">
+                            Sign Up
+                        </a>
+                        <a href="#" uk-toggle="target: #modal-login"
+                           class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
+                           style="border: none;">
+                            Sign In
+                        </a>
+                    @endif
                 </div>
                 <a uk-navbar-toggle-icon="" href="#offcanvas" uk-toggle=""
                    class="uk-navbar-toggle uk-hidden@m uk-icon uk-navbar-toggle-icon">
@@ -48,6 +78,126 @@
                 </a>
             </div>
         </nav>
+    </div>
+</div>
+<div id="modal-login" class="uk-modal-full" uk-modal style="overflow-x: hidden;">
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default uk-icon-button" type="button" uk-close></button>
+        <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+            <div class="uk-background-cover"
+                 style="background-image: url({{asset('img/no_gadget_5.svg')}});background-position-x: -80px;"
+                 uk-height-viewport></div>
+            <div class="uk-padding-large">
+                <p class="grey-text-4 font-heavy uk-text-center" style="font-size: 2.2rem;margin-bottom: 30px;">Welcome
+                    back<span class="accent-color">.</span></p>
+                <form action="{{ route('login') }}" method="post" enctype="multipart/form-data"
+                      style="padding-left: 80px;padding-right: 80px;">
+                    @csrf
+                    <div class="uk-margin">
+                        <div class="uk-inline uk-width-1">
+                            <span class="uk-form-icon" uk-icon="icon: user"></span>
+                            <input class="uk-input form-looks font-light" placeholder="Email Address"
+                                   style="height: 50px;font-size: 14px;" name="email" type="text" required>
+                            @error('email')
+                            <span class="accent-color font-light"
+                                  style="top: 5px;font-size: 0.8rem;position:relative;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <div class="uk-inline uk-width-1">
+                            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                            <input class="uk-input form-looks font-light" placeholder="Password"
+                                   style="height: 50px;font-size: 14px;" name="password" type="password" required>
+                            @error('password')
+                            <span class="accent-color font-light"
+                                  style="top: 5px;font-size: 0.8rem;position:relative;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <button type="submit"
+                            class="uk-button uk-align-center uk-margin-medium-top uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
+                            style="border: none;transform: scale(1.1)">
+                        Sign In
+                    </button>
+                    <p class="grey-text-1 uk-text-center font-regular uk-margin-medium-top">Don't have an account? <a
+                            href="#" uk-toggle="target: #modal-sign-up" class="font-extrabold accent-color">Sign Up</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal-sign-up" class="uk-modal-full" uk-modal style="overflow-x: hidden;">
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default uk-icon-button" type="button" uk-close></button>
+        <div class="uk-grid-collapse uk-child-width-1-2@s uk-flex-middle" uk-grid>
+            <div class="uk-background-cover"
+                 style="background-image: url({{asset('img/register.svg')}});background-position-x: -80px;"
+                 uk-height-viewport></div>
+            <div class="uk-padding-large">
+                <p class="grey-text-4 font-heavy uk-text-center" style="font-size: 2.2rem;margin-bottom: 30px;">Make you
+                    account<span class="accent-color">.</span></p>
+                <form action="{{ route('register_account') }}" method="post" enctype="multipart/form-data"
+                      style="padding-left: 80px;padding-right: 80px;">
+                    @csrf
+                    <div class="uk-margin">
+                        <div class="uk-inline uk-width-1">
+                            <span class="uk-form-icon" uk-icon="icon: user"></span>
+                            <input class="uk-input form-looks font-light" placeholder="Username"
+                                   style="height: 50px;font-size: 14px;" name="name" type="text" required>
+                            @error('name')
+                            <span class="accent-color font-light"
+                                  style="top: 5px;font-size: 0.8rem;position:relative;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <div class="uk-inline uk-width-1">
+                            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                            <input class="uk-input form-looks font-light" placeholder="Email Address"
+                                   style="height: 50px;font-size: 14px;" name="email" type="text" required>
+                            @error('email')
+                            <span class="accent-color font-light"
+                                  style="top: 5px;font-size: 0.8rem;position:relative;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <div class="uk-inline uk-width-1">
+                            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                            <input class="uk-input form-looks font-light" placeholder="Password"
+                                   style="height: 50px;font-size: 14px;" name="password" type="password" required>
+                            @error('password')
+                            <span class="accent-color font-light"
+                                  style="top: 5px;font-size: 0.8rem;position:relative;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <div class="uk-inline uk-width-1">
+                            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                            <input class="uk-input form-looks font-light" placeholder="Confirm Password"
+                                   style="height: 50px;font-size: 14px;" name="confirm_password" type="password"
+                                   required>
+                            @error('confirm_password')
+                            <span class="accent-color font-light"
+                                  style="top: 5px;font-size: 0.8rem;position:relative;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <input type="hidden" name="returnTo" value="{{url()->current()}}">
+                    <button type="submit"
+                            class="uk-button uk-align-center uk-margin-medium-top uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
+                            style="border: none;transform: scale(1.1)">
+                        Sign Up
+                    </button>
+                    <p class="grey-text-1 uk-text-center font-regular uk-margin-medium-top">Already have an account? <a
+                            href="#" uk-toggle="target: #modal-login" class="font-extrabold accent-color">Sign In</a>
+                    </p>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 

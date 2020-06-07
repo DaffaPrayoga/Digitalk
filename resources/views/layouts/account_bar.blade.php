@@ -10,7 +10,7 @@
               style="font-size: 14px;">{{\Illuminate\Support\Facades\Auth::user()->name}} <span
                 uk-icon="icon: chevron-down" type="button" style="margin-left: 10px;"></span></span>
     </div>
-    <div uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;"
+    <div uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;offset: 10"
          style="border-radius: 6px;" class="z-depth-15">
         <ul class="uk-nav uk-dropdown-nav">
             <li class="uk-nav-header">SETTING</li>

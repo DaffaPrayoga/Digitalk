@@ -29,9 +29,9 @@ class Globals
                     return '/admin';
                     break;
                 case "user":
-                    return '/profile';
+                    return url()->previous();
                     break;
-                case "super admin":
+                case "super_admin":
                     return '/super_admin';
                     break;
                 default:

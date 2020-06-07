@@ -44,6 +44,7 @@ class HomeController extends Controller
             $data = Gadget::where('brand_id', $brands->id)->orderBy('created_at', 'desc')->get();
             $threads = Thread::where([
                 ['brand_id', $brands->id],
+                ['show_status', 0],
             ])->orderBy('created_at', 'desc')->paginate(10);
         }
         return view('brand', compact('brands', 'data', 'threads'));
@@ -62,9 +63,16 @@ class HomeController extends Controller
                 $threads = Thread::where([
                     ['brand_id', $brands->id],
                     ['gadget_id', $gadget->id],
+                    ['show_status', 0],
                 ])->orderBy('created_at', 'desc')->paginate(10);
                 return view('gadget', compact('brands', 'gadget', 'threads'));
             }
         }
+    }
+
+    public function thread_detail_page($thread_key)
+    {
+        $data = Thread::where('thread_key', $thread_key)->first();
+        return view('thread_detail', compact('data'));
     }
 }
