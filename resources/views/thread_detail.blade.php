@@ -29,7 +29,8 @@
                     </div>
                     <div class="uk-width-1-2 uk-width-expand">
                         <div class="uk-margin">
-                            <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#" class="accent-color font-regular">{{$data->creator->name}}</a>
+                            <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#"
+                                                                                                   class="accent-color font-regular">{{$data->creator->name}}</a>
                                 • {{\Illuminate\Support\Carbon::parse($data->created_at)->diffForHumans()}} <span
                                     uk-icon="icon: commenting" class="uk-position-right"
                                     style="padding-top:20px;padding-right:20px;height: 20px;"></span><span
@@ -44,9 +45,9 @@
                                        style="margin-top: -10px;">{{\Illuminate\Support\Str::limit(strip_tags($data->article), 160, '[..]')}}</p>
                                 @endif
                             @elseif($data->thread_type == 1)p
-                                <img data-src="{{asset('img/thread_images/'.$data->image)}}" width="90%"
-                                     class="z-depth-15"
-                                     height="auto" uk-img style="margin-bottom: 30px;border-radius: 10px;" alt="">
+                            <img data-src="{{asset('img/thread_images/'.$data->image)}}" width="90%"
+                                 class="z-depth-15"
+                                 height="auto" uk-img style="margin-bottom: 30px;border-radius: 10px;" alt="">
                             @elseif($data->thread_type == 2)
                                 <iframe class="z-depth-15" src="{{$data->video_embed_link}}" title="Thread embed video"
                                         width="90%" height="400"
@@ -137,26 +138,65 @@
                             class="accent-color">report!</span></p>
                     <div class="uk-text-center">
                         <button type="button"
-                           class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
-                           style="border: none;">
+                                class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
+                                style="border: none;">
                             Report
                         </button>
-                        <div uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;offset: 20" style="border-radius: 10px;" class="z-depth-13">
-                            <p class="grey-text-3 font-extrabold">Why are you reporting this post?</p>
-                            <ul class="uk-nav uk-dropdown-nav">
-                                <li><a href="#">It's a spam</a></li>
-                                <li class="uk-nav-divider"></li>
-                                <li><a href="#">It's inapproriate</a></li>
-                                <li class="uk-nav-divider"></li>
-                                <li><a href="#">Other reason</a></li>
-                            </ul>
+                        <div
+                            uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;offset: 20"
+                            style="border-radius: 10px;" class="z-depth-13">
+                            @if($report_status == 0)
+                                <p class="grey-text-3 font-extrabold">Why are you reporting this post?</p>
+                                <ul class="uk-nav uk-dropdown-nav">
+                                    <li>
+                                        <a onclick="@if(\Illuminate\Support\Facades\Auth::check()) $('#spam_report').submit() @else warning_toast('You need to login before you can report a thread') @endif"
+                                           href="#">It's a spam</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li>
+                                        <a onclick="@if(\Illuminate\Support\Facades\Auth::check()) $('#inappropriate_report').submit() @else warning_toast('You need to login before you can report a thread') @endif"
+                                           href="#">It's inapproriate</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="#" @if(\Illuminate\Support\Facades\Auth::check()) uk-toggle="target: #modal-report"
+                                           @else onclick="warning_toast('Please login first before you can make a thread.')"
+                                            @endif>Other reason</a></li>
+                                </ul>
+                            @else
+                                <p class="grey-text-3 font-extrabold">You already reported this thread</p>
+                            @endif
                         </div>
-                        <form action="" method="post" enctype="multipart/form-data">
-
+                        <form id="spam_report" action="{{route('spam_report')}}" method="post"
+                              enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="thread_key" value="{{$data->thread_key}}">
+                        </form>
+                        <form id="inappropriate_report" action="{{route('inappropriate_report')}}" method="post"
+                              enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="thread_key" value="{{$data->thread_key}}">
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div id="modal-report" uk-modal>
+    <div class="uk-modal-dialog" style="border-radius: 20px !important;">
+        <button class="uk-modal-close-default uk-icon-button" type="button" uk-close></button>
+        <div class="uk-modal-body" style="border-radius: 20px !important;">
+            <h2 class="uk-modal-title font-heavy grey-text-4" style="font-size: 1.9rem;">Report a thread</h2>
+            <form action="{{route('other_report')}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="uk-inline uk-width-1-1" style="margin-top: 20px;">
+                    <label class="uk-form-label" for="form-stacked-text" style="position: relative;bottom: 10px;">Your reason</label>
+                    <textarea class="form-looks font-light uk-textarea" name="other_reason"
+                              placeholder="ketik alasan disini" style="min-height: 150px;" required></textarea>
+                </div>
+                <input type="hidden" name="thread_key" value="{{$data->thread_key}}">
+                <button class="uk-button bg-gradient white-text uk-border-rounded uk-margin-medium-top"
+                        type="submit">Submit
+                </button>
+            </form>
         </div>
     </div>
 </div>
@@ -167,7 +207,7 @@
 
     /**
      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configur ation-variables*/
     /*
     var disqus_config = function () {
     this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable

@@ -26,6 +26,11 @@ class Thread extends Model
         return $this->belongsTo('App\Gadget', 'gadget_id', 'id');
     }
 
+    public function thread_report()
+    {
+        return $this->belongsTo('App\ThreadReport', 'thread_key', 'thread_key');
+    }
+
     public function getVoteAttribute()
     {
         $vote = $this->up_vote - $this->down_vote;

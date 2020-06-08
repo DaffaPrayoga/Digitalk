@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Brand;
 use App\Gadget;
 use App\Thread;
+use App\ThreadReport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -73,6 +75,15 @@ class HomeController extends Controller
     public function thread_detail_page($thread_key)
     {
         $data = Thread::where('thread_key', $thread_key)->first();
-        return view('thread_detail', compact('data'));
+        if (Auth::check()) {
+            $report_status = ThreadReport::where([
+                ['thread_key', $thread_key],
+                ['user_id', Auth::user()->id],
+                ['report_status', 0]
+            ])->count();
+        } else {
+            $report_status = 0;
+        }
+        return view('thread_detail', compact('data', 'report_status'));
     }
 }

@@ -25,26 +25,35 @@ Route::post('/create_thread', 'ThreadController@store')->name('create_thread');
 //create account
 Route::post('/register_account', 'UserController@register_account')->name('register_account');
 //report thread
-Route::post('/spam_report', 'UserController@register_account')->name('register_account');
+Route::post('/spam_report', 'ThreadReportController@spam_report')->name('spam_report');
+Route::post('/inappropriate_report', 'ThreadReportController@inappropriate_report')->name('inappropriate_report');
+Route::post('/other_report', 'ThreadReportController@other_report')->name('other_report');
 //admin
-Route::group(['middleware' => ['auth','admin']], function () {
+Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
-    //Manage Brand
-    Route::get('/admin/manage_brands', 'BrandController@index')->name('brands.index');
-    Route::get('/admin/manage_brands/add', 'BrandController@create')->name('brands.create');
-    Route::post('/admin/manage_brands/store', 'BrandController@store')->name('brands.store');
-    Route::post('/admin/manage_brands/delete/{id}', 'BrandController@destroy')->name('brands.delete');
-    Route::get('/admin/manage_brands/edit/{id}', 'BrandController@edit')->name('brands.edit');
-    Route::post('/admin/manage_brands/update/{id}', 'BrandController@update')->name('brands.update');
-    //Manage Gadget
-    Route::get('/admin/manage_gadgets', 'GadgetController@index')->name('gadgets.index');
-    Route::get('/admin/manage_gadgets/add', 'GadgetController@create')->name('gadgets.create');
-    Route::post('/admin/manage_gadgets/store', 'GadgetController@store')->name('gadgets.store');
-    Route::post('/admin/manage_gadgets/delete/{id}', 'GadgetController@destroy')->name('gadgets.delete');
-    Route::get('/admin/manage_gadgets/edit/{id}', 'GadgetController@edit')->name('gadgets.edit');
-    Route::post('/admin/manage_gadgets/update/{id}', 'GadgetController@update')->name('gadgets.update');
+    Route::prefix('admin')->group(function () {
+        //Manage Brand
+        Route::get('manage_brands', 'BrandController@index')->name('brands.index');
+        Route::get('manage_brands/add', 'BrandController@create')->name('brands.create');
+        Route::post('manage_brands/store', 'BrandController@store')->name('brands.store');
+        Route::post('manage_brands/delete/{id}', 'BrandController@destroy')->name('brands.delete');
+        Route::get('manage_brands/edit/{id}', 'BrandController@edit')->name('brands.edit');
+        Route::post('manage_brands/update/{id}', 'BrandController@update')->name('brands.update');
+        //Manage Gadget
+        Route::get('manage_gadgets', 'GadgetController@index')->name('gadgets.index');
+        Route::get('manage_gadgets/add', 'GadgetController@create')->name('gadgets.create');
+        Route::post('manage_gadgets/store', 'GadgetController@store')->name('gadgets.store');
+        Route::post('manage_gadgets/delete/{id}', 'GadgetController@destroy')->name('gadgets.delete');
+        Route::get('manage_gadgets/edit/{id}', 'GadgetController@edit')->name('gadgets.edit');
+        Route::post('manage_gadgets/update/{id}', 'GadgetController@update')->name('gadgets.update');
+        //Manage Report
+        Route::get('manage_reports', 'ThreadReportController@index')->name('reports.index');
+        Route::get('manage_reports/see/{thread_key}', 'ThreadReportController@show')->name('reports.show');
+        Route::post('manage_reports/ban/{id}', 'ThreadReportController@ban')->name('reports.ban');
+        Route::post('manage_reports/ignore/{id}', 'ThreadReportController@ignore')->name('reports.ignore');
+    });
 });
-Route::group(['middleware' => ['auth','super_admin']], function () {
+Route::group(['middleware' => ['auth', 'super_admin']], function () {
     Route::get('/super_admin', 'AdminController@super_index')->name('super_admin');
     //Manage Admins
     Route::get('/super_admin/manage_admins', 'AdminController@index_manage')->name('admins.index');
