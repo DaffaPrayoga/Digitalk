@@ -67,7 +67,7 @@ class HomeController extends Controller
                 $threads = Thread::where([
                     ['brand_id', $brands->id],
                     ['gadget_id', $gadget->id],
-                    ['show_status', 0],
+                    ['show_status', 0],z
                 ])->orderBy('created_at', 'desc')->paginate(10);
                 return view('gadget', compact('brands', 'gadget', 'threads'));
             }

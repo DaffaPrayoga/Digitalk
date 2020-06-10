@@ -21,7 +21,7 @@
 
     function comfirm_popup(form, message) {
         swal({
-            title: "<h5 class=font-bold center black-text style=font-size:2rem;>" + message + "<h5>",
+            title: "<h5 class=font-bold center black-text style=font-size:1.8rem;>" + message + "<h5>",
             confirmButtonText: "Yes!",
             type: "warning",
             allowOutsideClick: true,
@@ -81,7 +81,7 @@
 @if (session('alert'))
     <script type="text/javascript">
         swal({
-            title: "<h5 class=font-bold center black-text style=font-size:2rem;>{{ session('alert') }}<h5>",
+            title: "<h5 class=font-bold center black-text style=font-size:1.8rem;>{{ session('alert') }}<h5>",
             confirmButtonText: "Okay!",
             type: "success",
             allowOutsideClick: true,
@@ -95,7 +95,7 @@
 @if (session('whythehell'))
     <script type="text/javascript">
         swal({
-            title: "<h5 class=font-bold center black-text style=font-size:2rem;>{{ session('whythehell') }}<h5>",
+            title: "<h5 class=font-bold center black-text style=font-size:1.8rem;>{{ session('whythehell') }}<h5>",
             confirmButtonText: "Okay",
             type: "error",
             allowOutsideClick: true,
@@ -109,7 +109,7 @@
 @if (session('warning'))
     <script type="text/javascript">
         swal({
-            title: "<h5 class=font-bold center black-text style=font-size:2rem;>{{ session('warning') }}<h5>",
+            title: "<h5 class=font-bold center black-text style=font-size:1.8rem;>{{ session('warning') }}<h5>",
             confirmButtonText: "Okay",
             imageUrl: '{{asset('img/404.svg')}}',
             imageWidth: 400,

@@ -20,22 +20,27 @@ Route::get('/forum', 'HomeController@forum_page')->name('forum');
 Route::get('/forum/brand/{name}', 'HomeController@brand_page')->name('brand_home');
 Route::get('/forum/brand/{name}/{slug}', 'HomeController@gadget_page')->name('gadget_home');
 Route::get('/thread/{thread_key}', 'HomeController@thread_detail_page')->name('thread_detail');
-//create thread
-Route::post('/create_thread', 'ThreadController@store')->name('create_thread');
 //create account
 Route::post('/register_account', 'UserController@register_account')->name('register_account');
-//report thread
-Route::post('/spam_report', 'ThreadReportController@spam_report')->name('spam_report');
-Route::post('/inappropriate_report', 'ThreadReportController@inappropriate_report')->name('inappropriate_report');
-Route::post('/other_report', 'ThreadReportController@other_report')->name('other_report');
-//Upvote & Downvote thread
-Route::post('/upvote', 'ThreadController@upvote')->name('upvote');
-Route::post('/downvote', 'ThreadController@downvote')->name('downvote');
 //search
 Route::get('/search', 'HomeController@search')->name('search');
+//universal
+Route::group(['middleware' => ['auth']], function () {
+    //report thread
+    Route::post('/spam_report', 'ThreadReportController@spam_report')->name('spam_report');
+    Route::post('/inappropriate_report', 'ThreadReportController@inappropriate_report')->name('inappropriate_report');
+    Route::post('/other_report', 'ThreadReportController@other_report')->name('other_report');
+    //Upvote & Downvote thread
+    Route::post('/upvote', 'ThreadController@upvote')->name('upvote');
+    Route::post('/downvote', 'ThreadController@downvote')->name('downvote');
+    //create thread
+    Route::post('/create_thread', 'ThreadController@store')->name('create_thread');
+});
 //admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
+    //ban thread
+    Route::post('/ban_thread', 'ThreadReportController@ban_thread')->name('ban_thread');
     Route::prefix('admin')->group(function () {
         //Manage Brand
         Route::get('manage_brands', 'BrandController@index')->name('brands.index');

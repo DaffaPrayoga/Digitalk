@@ -31,10 +31,10 @@
                     </thead>
                     @foreach($data as $v)
                         <tr>
-                            <td>{{$v->id}}</td>
-                            <td>{{$v->name}}</td>
+                            <td>{{$v['id']}}</td>
+                            <td>{{$v['name']}}</td>
                             <td>
-                                {{$v->brand->name}}
+                                {{$v->['']}}
                             </td>
                             <td>{{$v->year_released}}</td>
                             <td>

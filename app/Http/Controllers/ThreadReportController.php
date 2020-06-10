@@ -148,6 +148,15 @@ class ThreadReportController extends Controller
         return redirect()->route('reports.index')->with('toast_success', 'Thread banned!');
     }
 
+    public function ban_thread(Request $request)
+    {
+        $thread = Thread::where('thread_key', $request['thread_key'])->first();
+        $thread->show_status = 1;
+        $thread->update();
+
+        return redirect()->route('forum')->with('toast_success', 'Thread banned!');
+    }
+
     /**
      * Ignore thread
      *

@@ -24,7 +24,8 @@
                                 <button type="button"
                                         @if(\Illuminate\Support\Facades\Auth::check()) onclick="$('#upvote{{$data->id}}').submit()"
                                         @else onclick="warning_toast('Please login first before you can vote.')"
-                                        @endif @if(\Illuminate\Support\Facades\Auth::check() && $data->getVoteStatusAttribute(\Illuminate\Support\Facades\Auth::user()->id) == 'voted') class="uk-icon-button" disabled uk-tooltip="You have voted"
+                                        @endif @if(\Illuminate\Support\Facades\Auth::check() && $data->getVoteStatusAttribute(\Illuminate\Support\Facades\Auth::user()->id) == 'voted') class="uk-icon-button"
+                                        disabled uk-tooltip="You have voted"
                                         @else class="uk-icon-button" @endif uk-icon="arrow-up"></button>
                             </form>
                         </div>
@@ -39,7 +40,8 @@
                                 <button type="button"
                                         @if(\Illuminate\Support\Facades\Auth::check()) onclick="$('#downvote{{$data->id}}').submit()"
                                         @else onclick="warning_toast('Please login first before you can vote.')"
-                                        @endif @if(\Illuminate\Support\Facades\Auth::check() && $data->getVoteStatusAttribute(\Illuminate\Support\Facades\Auth::user()->id) == 'voted') class="uk-icon-button" disabled uk-tooltip="title: You have voted; pos: bottom"
+                                        @endif @if(\Illuminate\Support\Facades\Auth::check() && $data->getVoteStatusAttribute(\Illuminate\Support\Facades\Auth::user()->id) == 'voted') class="uk-icon-button"
+                                        disabled uk-tooltip="title: You have voted; pos: bottom"
                                         @else class="uk-icon-button" @endif uk-icon="arrow-down"></button>
                             </form>
                         </div>
@@ -149,50 +151,73 @@
             <div class="uk-card uk-card-default uk-card-small uk-margin-top uk-card-body z-depth-15"
                  uk-sticky="offset: 80; bottom: #top"
                  style="border-radius: 10px;z-index: 500;">
-                <div class="uk-padding-small">
-                    <p class="font-extrabold grey-text-3 uk-text-center"
-                       style="font-size: 18px;">Find this thread disturbing?<br>Don't hesitate to <span
-                            class="accent-color">report!</span></p>
-                    <div class="uk-text-center">
-                        <button type="button"
-                                class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
-                                style="border: none;">
-                            Report
-                        </button>
-                        <div
-                            uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;offset: 20"
-                            style="border-radius: 10px;" class="z-depth-13">
-                            @if($report_status == 0)
-                                <p class="grey-text-3 font-extrabold">Why are you reporting this post?</p>
-                                <ul class="uk-nav uk-dropdown-nav">
-                                    <li>
-                                        <a onclick="@if(\Illuminate\Support\Facades\Auth::check()) $('#spam_report').submit() @else warning_toast('You need to login before you can report a thread') @endif"
-                                           href="#">It's a spam</a></li>
-                                    <li class="uk-nav-divider"></li>
-                                    <li>
-                                        <a onclick="@if(\Illuminate\Support\Facades\Auth::check()) $('#inappropriate_report').submit() @else warning_toast('You need to login before you can report a thread') @endif"
-                                           href="#">It's inapproriate</a></li>
-                                    <li class="uk-nav-divider"></li>
-                                    <li><a href="#" @if(\Illuminate\Support\Facades\Auth::check()) uk-toggle="target: #modal-report"
-                                           @else onclick="warning_toast('Please login first before you can make a thread.')"
-                                            @endif>Other reason</a></li>
-                                </ul>
-                            @else
-                                <p class="grey-text-3 font-extrabold">You already reported this thread</p>
-                            @endif
+                @if(\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->role == "admin")
+                    <div class="uk-padding-small">
+                        <p class="font-extrabold grey-text-3 uk-text-center"
+                           style="font-size: 18px;">Find this thread not proper? <br><span
+                                class="accent-color">Ban this thread!</span></p>
+                        <div class="uk-text-center">
+                            <form id="ban_thread"
+                                  onsubmit="event.preventDefault();comfirm_popup(this, 'Are you sure want to ban this thread? The community will not be able to see this thread anymore.')"
+                                  action="{{route('ban_thread')}}" method="post"
+                                  enctype="multipart/form-data">
+                                <button type="submit"
+                                        class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
+                                        style="border: none;">
+                                    Ban!
+                                </button>
+                                @csrf
+                                <input type="hidden" name="thread_key" value="{{$data->thread_key}}">
+                            </form>
                         </div>
-                        <form id="spam_report" action="{{route('spam_report')}}" method="post"
-                              enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="thread_key" value="{{$data->thread_key}}">
-                        </form>
-                        <form id="inappropriate_report" action="{{route('inappropriate_report')}}" method="post"
-                              enctype="multipart/form-data">
-                            @csrf
-                            <input type="hidden" name="thread_key" value="{{$data->thread_key}}">
-                        </form>
                     </div>
-                </div>
+                @else
+                    <div class="uk-padding-small">
+                        <p class="font-extrabold grey-text-3 uk-text-center"
+                           style="font-size: 18px;">Find this thread disturbing?<br>Don't hesitate to <span
+                                class="accent-color">report!</span></p>
+                        <div class="uk-text-center">
+                            <button type="button"
+                                    class="uk-button uk-button-default tm-button-default uk-icon uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient"
+                                    style="border: none;">
+                                Report
+                            </button>
+                            <div
+                                uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;offset: 20"
+                                style="border-radius: 10px;" class="z-depth-13">
+                                @if($report_status == 0)
+                                    <p class="grey-text-3 font-extrabold">Why are you reporting this post?</p>
+                                    <ul class="uk-nav uk-dropdown-nav">
+                                        <li>
+                                            <a onclick="@if(\Illuminate\Support\Facades\Auth::check()) $('#spam_report').submit() @else warning_toast('You need to login before you can report a thread') @endif"
+                                               href="#">It's a spam</a></li>
+                                        <li class="uk-nav-divider"></li>
+                                        <li>
+                                            <a onclick="@if(\Illuminate\Support\Facades\Auth::check()) $('#inappropriate_report').submit() @else warning_toast('You need to login before you can report a thread') @endif"
+                                               href="#">It's inapproriate</a></li>
+                                        <li class="uk-nav-divider"></li>
+                                        <li><a href="#"
+                                               @if(\Illuminate\Support\Facades\Auth::check()) uk-toggle="target: #modal-report"
+                                               @else onclick="warning_toast('Please login first before you can make a thread.')"
+                                                @endif>Other reason</a></li>
+                                    </ul>
+                                @else
+                                    <p class="grey-text-3 font-extrabold">You already reported this thread</p>
+                                @endif
+                            </div>
+                            <form id="spam_report" action="{{route('spam_report')}}" method="post"
+                                  enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="thread_key" value="{{$data->thread_key}}">
+                            </form>
+                            <form id="inappropriate_report" action="{{route('inappropriate_report')}}" method="post"
+                                  enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" name="thread_key" value="{{$data->thread_key}}">
+                            </form>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -205,7 +230,8 @@
             <form action="{{route('other_report')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="uk-inline uk-width-1-1" style="margin-top: 20px;">
-                    <label class="uk-form-label" for="form-stacked-text" style="position: relative;bottom: 10px;">Your reason</label>
+                    <label class="uk-form-label" for="form-stacked-text" style="position: relative;bottom: 10px;">Your
+                        reason</label>
                     <textarea class="form-looks font-light uk-textarea" name="other_reason"
                               placeholder="ketik alasan disini" style="min-height: 150px;" required></textarea>
                 </div>

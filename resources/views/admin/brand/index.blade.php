@@ -31,20 +31,20 @@
                     </thead>
                     @foreach($data as $v)
                         <tr>
-                            <td>{{$v->id}}</td>
-                            <td>{{$v->name}}</td>
+                            <td>{{$v['id']}}</td>
+                            <td>{{$v['name']}}</td>
                             <td>
-                                <img src="{{asset('img/brand_logo/'.$v->image)}}" style="height: 30px;" alt="">
+                                <img src="{{asset('img/brand_logo/'.$v['image'])}}" style="height: 30px;" alt="">
                             </td>
-                            <td class="font-light grey-text text-darken-1">{{\Carbon\Carbon::parse($v->created_at)->diffForHumans()}}</td>
+                            <td class="font-light grey-text text-darken-1">{{\Carbon\Carbon::parse($v['created_at'])->diffForHumans()}}</td>
                             <td>
-                                <a href="{{route('brands.edit', $v->id)}}" class="uk-icon-button" uk-icon="pencil"></a>
-                                <form id="delete{{$v->id}}" method="post"
+                                <a href="{{route('brands.edit', $v['id'])}}" class="uk-icon-button" uk-icon="pencil"></a>
+                                <form id="delete{{$v['id']}}" method="post"
                                       onsubmit="event.preventDefault();comfirm_popup(this, 'Are you sure want to delete this?');"
-                                      action="{{route('brands.delete', $v->id)}}"
+                                      action="{{route('brands.delete', $v['id'])}}"
                                       style="display: inline">
                                     @csrf
-                                    <input type="hidden" value="{{$v->id}}"
+                                    <input type="hidden" value="{{$v['id']}}"
                                            name="id">
                                     <button type="submit"
                                             class="uk-icon-button"

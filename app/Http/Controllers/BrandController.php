@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Brand;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class BrandController extends Controller
 {
@@ -15,7 +17,11 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $data = Brand::orderBy('created_at','desc')->get();
+        $response = Http::get('http://localhost/Restful/Api/brand_get');
+        $list = $response->body();
+        $data_get = json_decode($list, true);
+        $data = $data_get['data'];
+
         return view('admin.brand.index', compact('data'));
     }
 
@@ -32,7 +38,7 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -59,7 +65,7 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -70,7 +76,7 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -82,8 +88,8 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -112,12 +118,13 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $delete = Brand::find($id);
+        $delete->gadgets()->delete();
         $delete->delete();
 
         return redirect()->route('brands.index')->with('alert', 'Data deleted!');

@@ -6,6 +6,7 @@ use App\Brand;
 use App\Gadget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Psy\Util\Str;
 
 class GadgetController extends Controller
@@ -17,7 +18,11 @@ class GadgetController extends Controller
      */
     public function index()
     {
-        $data = Gadget::orderBy('created_at','desc')->get();
+        $response = Http::get('http://localhost/Restful/Api/gadget_get');
+        $list = $response->body();
+        $data_get = json_decode($list, true);
+        $data = $data_get['data'];
+
         return view('admin.gadget.index', compact('data'));
     }
 

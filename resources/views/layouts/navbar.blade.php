@@ -17,7 +17,7 @@
                         <span uk-search-icon></span>
                         <input class="uk-search-input font-bold" name="q" type="search"
                                uk-toggle="target: #modal-search"
-                               placeholder="Search..." style="font-size: 0.9rem;">
+                               placeholder="Search for thread..." style="font-size: 0.9rem;">
                     </form>
                 </div>
                 <ul class="uk-navbar-nav uk-visible@m">
