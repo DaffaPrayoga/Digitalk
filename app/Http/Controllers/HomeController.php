@@ -7,7 +7,9 @@ use App\Gadget;
 use App\Thread;
 use App\ThreadReport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -85,5 +87,91 @@ class HomeController extends Controller
             $report_status = 0;
         }
         return view('thread_detail', compact('data', 'report_status'));
+    }
+
+    public function search_page()
+    {
+        $brands = Brand::where('name', 'like', '%' . $_GET['q'] . '%')->get();
+        return view('search', compact('brands'));
+    }
+
+    function search(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            if ($query != '') {
+                $data = Thread::join('brand', 'thread.brand_id', '=', 'brand.id')->join('gadget', 'thread.gadget_id', '=', 'gadget.id')
+                    ->select('thread.*', 'brand.name', 'gadget.name')
+                    ->where('title', 'like', '%' . $query . '%')
+                    ->orWhere('article', 'like', '%' . $query . '%')
+                    ->orWhere('brand.name', 'like', '%' . $query . '%')
+                    ->orWhere('gadget.name', 'like', '%' . $query . '%')
+                    ->latest()
+                    ->get();
+            } else {
+                $data = null;
+            }
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach ($data as $row) {
+                    $chip_brand = "";
+                    $chip_gadget = "";
+                    $mid_output = "";
+                    if (!empty($row->brand_id)) {
+                        $chip_brand = '<a href="' . route("brand_home", $row->brand->name) . '" class="brand-chip uk-border-rounded white-text bg-gradient-noshadow" style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">' . $row->brand->name . '</a>';
+                    }
+                    if (!empty($row->gadget_id)) {
+                        $chip_gadget = '<a href="' . url("forum/brand/" . $row->brand->name, $row->gadget->slug) . '" class="brand-chip uk-border-rounded white-text bg-gradient-noshadow" style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">' . $row->gadget->name . '</a>';
+                    }
+                    if ($row->thread_type == 0) {
+                        if (!empty($row->article)) {
+                            $mid_output = '<p class="grey-text-1 font-light" style="margin-top: -5px;">' . Str::limit(strip_tags($row->article), 160, '[..]') . '</p>';
+                        }
+                    } elseif ($row->thread_type == 1) {
+                        $mid_output = '<img data-src="' . asset('img/thread_images/' . $row->image) . '" width="100%" class="z-depth-15" height="auto" uk-img style="margin-bottom: 30px;border-radius: 10px;margin-top:10px;" alt="">';
+                    } elseif ($row->thread_type == 2) {
+                        $mid_output = '<iframe class="z-depth-15" src="' . $row->video_embed_link . '" title="' . $row->title . '" width="100%" height="250px" style="margin-bottom: 30px;border-radius: 10px;margin-top: 10px;"></iframe>';
+                    }
+                    $output .= '
+                                <div class="uk-width-1-2">
+                                    <div
+                                        class="thread-card uk-card uk-card-default uk-card-small uk-card-body z-depth-15 hoverable"
+                                        style="border-radius: 10px;z-index: 15;">
+                                        <div class="uk-grid" uk-grid>
+                                            <div class="uk-width-1-1 uk-width-expand">
+                                                <div class="uk-margin">
+                                                    <p class="grey-text font-light" style="font-size: 0.9rem">Posted by
+                                                        <a href="#" class="accent-color font-regular">' . $row->creator->name . '</a>
+                                                        • ' . Carbon::parse($row->created_at)->diffForHumans() . '</p>
+                                                    <a href="' . route("thread_detail", $row->thread_key) . '" class="grey-text-3 font-extrabold"
+                                                       style="font-size: 18px;top: -15px;position:relative">' . $row->title . '</a>
+                                                    ' . $mid_output . '
+                                                    <div class="tags" style="margin-bottom: 10px;">
+                                                         ' . $chip_brand . " " . $chip_gadget . '
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>';
+                }
+            } else {
+                $output = '
+                <div class="uk-width-1-1">
+                    <div class="uk-text-center">
+                        <img src="' . asset('img/search.svg') . '" uk-img style="height: 250px;margin-top: -30px;" alt="">
+                        <p class="grey-text-3 font-extrabold" style="font-size: 25px;">No Search found</p>
+                        <p class="grey-text-1 font-regular" style="font-size: 17px;margin-top: -15px;">please retype in the search bar.</p>
+                    </div>
+                </div>';
+            }
+            $data = array(
+                'table_data' => $output,
+                'total_data' => $total_row
+            );
+
+            echo json_encode($data);
+        }
     }
 }

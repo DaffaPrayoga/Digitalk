@@ -459,3 +459,82 @@ body {
 .hide {
     display: none !important;
 }
+
+.card-brand {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-brand:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-top-right-radius: 10px;
+    height: 100%;
+    background: linear-gradient(270deg, #f44881, #ec454f) !important;
+    clip-path: circle(100px at 80% 0%);
+    transition: 0.3s ease-in-out;
+}
+
+.card-brand:hover:before {
+    clip-path: circle(200px at 80% -40%);
+}
+
+.card-brand:after {
+    content: 'Apple';
+    position: relative;
+    top: 30%;
+    left: -20%;
+    font-size: 4em;
+    font-family: 'Gilroy', 'roboto', sans-serif !important;
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.04);
+    transition: 0.5s ease-in-out;
+}
+
+.img-carz {
+    position: relative;
+    display: block;
+    left: auto;
+    right: auto;
+    top: 20%;
+    transform: translateY(60%);
+    transition: 0.5s ease-in-out;
+    z-index: 1000;
+}
+
+.card-brand:hover .img-carz {
+    transform: translateY(-10%);
+}
+
+.card-brand:hover .chipz {
+    transform: translateY(-30%);
+    opacity: 1;
+    visibility: visible;
+}
+
+.card-brand:hover .chipz-2 {
+    transform: translateY(-90%);
+    opacity: 1;
+    visibility: visible;
+}
+
+.chipz {
+    transform: translateY(40%);
+    transition: 0.3s ease-in-out;
+    transition-delay: 0.2s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.chipz-2 {
+    transform: translateY(40%);
+    transition: 0.3s ease-in-out;
+    transition-delay: 0.35s;
+    opacity: 0;
+    visibility: hidden;
+}

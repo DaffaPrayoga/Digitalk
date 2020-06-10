@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
+use App\ThreadVote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -32,7 +33,7 @@ class ThreadController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,13 +51,13 @@ class ThreadController extends Controller
         $new->thread_type = $request['thread_type'];
         if ($request['thread_type'] == 0) {
             $new->article = $request['article'];
-        }elseif ($request['thread_type'] == 1) {
+        } elseif ($request['thread_type'] == 1) {
             $file = $request->file('image');
             $file_enx = $file->getClientOriginalExtension();
             $namafile = "thread_" . $new->thread_key . "." . $file_enx;
             $request->file('image')->move("img/thread_images/", $namafile);
             $new->image = $namafile;
-        }elseif ($request['thread_type'] == 2) {
+        } elseif ($request['thread_type'] == 2) {
             $new->video_embed_link = $request['video_embed_link'];
         }
 
@@ -67,7 +68,7 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -78,7 +79,7 @@ class ThreadController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -89,8 +90,8 @@ class ThreadController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -101,11 +102,33 @@ class ThreadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
+    }
+
+    public function upvote(Request $request)
+    {
+        $vote = new ThreadVote();
+        $vote->thread_key = $request['thread_key'];
+        $vote->user_id = Auth::user()->id;
+        $vote->vote_status = 1;
+        $vote->save();
+
+        return back()->with('toast_success', 'Thread upvoted');
+    }
+
+    public function downvote(Request $request)
+    {
+        $vote = new ThreadVote();
+        $vote->thread_key = $request['thread_key'];
+        $vote->user_id = Auth::user()->id;
+        $vote->vote_status = 2;
+        $vote->save();
+
+        return back()->with('toast_success', 'Thread downvoted');
     }
 }

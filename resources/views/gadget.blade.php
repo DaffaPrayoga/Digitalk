@@ -150,14 +150,31 @@
                     <div class="uk-grid" uk-grid>
                         <div class="uk-width-auto">
                             <div class="uk-width-1-1">
-                                <a href="#" class="uk-icon-button" uk-icon="arrow-up"></a>
+                                <form id="upvote{{$t->id}}" action="{{route('upvote')}}" method="post"
+                                      enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="thread_key" value="{{$t->thread_key}}">
+                                    <button type="button"
+                                            @if(\Illuminate\Support\Facades\Auth::check()) onclick="$('#upvote{{$t->id}}').submit()"
+                                            @else onclick="warning_toast('Please login first before you can vote.')"
+                                            @endif @if(\Illuminate\Support\Facades\Auth::check() && $t->getVoteStatusAttribute(\Illuminate\Support\Facades\Auth::user()->id) == 'voted') class="uk-icon-button" disabled uk-tooltip="You have voted"
+                                            @else class="uk-icon-button" @endif uk-icon="arrow-up"></button>
+                                </form>
                             </div>
                             <div class="uk-width-1-1">
                                 <p class="grey-text-3 font-bold uk-text-center"
                                    style="margin-top: 15px;margin-bottom: 10px;">{{$t->getVoteAttribute()}}</p>
                             </div>
                             <div class="uk-width-1-1">
-                                <a href="#" class="uk-icon-button" uk-icon="arrow-down"></a>
+                                <form action="{{route('downvote')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="thread_key" value="{{$t->thread_key}}">
+                                    <button type="button"
+                                            @if(\Illuminate\Support\Facades\Auth::check()) onclick="$('#downvote{{$t->id}}').submit()"
+                                            @else onclick="warning_toast('Please login first before you can vote.')"
+                                            @endif @if(\Illuminate\Support\Facades\Auth::check() && $t->getVoteStatusAttribute(\Illuminate\Support\Facades\Auth::user()->id) == 'voted') class="uk-icon-button" disabled uk-tooltip="title: You have voted; pos: bottom"
+                                            @else class="uk-icon-button" @endif uk-icon="arrow-down"></button>
+                                </form>
                             </div>
                         </div>
                         <div class="uk-width-1-2 uk-width-expand">

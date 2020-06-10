@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Brand extends Model
 {
+    use Searchable;
     protected $table = "brand";
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'image'];
@@ -26,5 +28,19 @@ class Brand extends Model
     {
         $count = Thread::where('brand_id', $this->id)->count();
         return $count;
+    }
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        // Applies Scout Extended default transformations:
+        $array = $this->transform($array);
+
+        return $array;
     }
 }

@@ -2,16 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0fedecc1-b020-4be8-84ac-f25cd6cd2d9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/ThreadReport.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_06_07_194427_update_user_id_in_thread_report.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/report/add.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/report/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/report/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/ThreadVote.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/scout.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_06_09_064115_create_thread_vote_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/search.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/search.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/digitalk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/digitalk.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Brand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Gadget.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Gadget.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ThreadReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ThreadReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ThreadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ThreadController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Thread.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Thread.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin_nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin_nav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/brand.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/brand.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/forum.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/forum.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/gadget.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/gadget.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/js.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/js.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/thread_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thread_detail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -125,6 +136,10 @@
       <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/psr/log" />
       <path value="$PROJECT_DIR$/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/vendor/laravel/scout" />
+      <path value="$PROJECT_DIR$/vendor/algolia/algoliasearch-client-php" />
+      <path value="$PROJECT_DIR$/vendor/riimu/kit-phpencoder" />
+      <path value="$PROJECT_DIR$/vendor/algolia/scout-extended" />
     </include_path>
   </component>
   <component name="ProjectId" id="1Zx36kB7bMlIn5gkTWLHBVotVaz" />
@@ -234,7 +249,9 @@
       <workItem from="1591354930674" duration="291000" />
       <workItem from="1591355391218" duration="12030000" />
       <workItem from="1591502724470" duration="13471000" />
-      <workItem from="1591577033328" duration="7760000" />
+      <workItem from="1591577033328" duration="14327000" />
+      <workItem from="1591643075783" duration="2336000" />
+      <workItem from="1591683426344" duration="26243000" />
     </task>
     <servers />
   </component>
@@ -258,20 +275,20 @@
       <screen x="0" y="23" width="1440" height="820" />
     </state>
     <state x="461" y="265" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.1440.820@0.23.1440.820" timestamp="1591126400834" />
-    <state x="780" y="450" key="NewPhpFileDialog" timestamp="1588533552329">
+    <state x="780" y="450" key="NewPhpFileDialog" timestamp="1591733066981">
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state x="761" y="328" key="NewPhpFileDialog/0.0.1440.900@0.0.1440.900" timestamp="1588175061554" />
-    <state x="780" y="450" key="NewPhpFileDialog/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1588533552329" />
-    <state x="207" y="37" width="900" height="722" key="SettingsEditor" timestamp="1591376124742">
+    <state x="780" y="450" key="NewPhpFileDialog/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1591733066981" />
+    <state x="207" y="37" width="900" height="722" key="SettingsEditor" timestamp="1591739709721">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
     <state x="173" y="31" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1588521823592" />
     <state x="485" y="118" width="900" height="722" key="SettingsEditor/0.23.1440.817@0.23.1440.817" timestamp="1590949132222" />
-    <state x="207" y="37" width="997" height="759" key="SettingsEditor/0.23.1440.820@0.23.1440.820" timestamp="1591376124742" />
+    <state x="207" y="37" width="997" height="759" key="SettingsEditor/0.23.1440.820@0.23.1440.820" timestamp="1591739709721" />
     <state x="485" y="122" width="900" height="722" key="SettingsEditor/0.23.1440.821@0.23.1440.821" timestamp="1591303002732" />
     <state x="575" y="171" key="SettingsEditor/1920.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1589862627919" />
-    <state x="646" y="236" key="SettingsEditor/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1591251065135" />
+    <state x="646" y="236" key="SettingsEditor/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1591693572448" />
     <state x="380" y="265" key="com.intellij.ide.util.TipDialog" timestamp="1588879897049">
       <screen x="0" y="23" width="1440" height="820" />
     </state>
@@ -295,13 +312,13 @@
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state x="625" y="241" key="run.anything.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1591381349850" />
-    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup" timestamp="1591587002042">
-      <screen x="0" y="23" width="1920" height="1000" />
+    <state x="461" y="234" width="670" height="609" key="search.everywhere.popup" timestamp="1591779622042">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="461" y="234" width="670" height="609" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1590153468112" />
+    <state x="461" y="234" width="670" height="609" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1591779622042" />
     <state x="461" y="235" width="670" height="553" key="search.everywhere.popup/0.23.1440.817@0.23.1440.817" timestamp="1591376408127" />
-    <state x="461" y="236" width="670" height="555" key="search.everywhere.popup/0.23.1440.820@0.23.1440.820" timestamp="1591214257569" />
+    <state x="461" y="236" width="670" height="555" key="search.everywhere.popup/0.23.1440.820@0.23.1440.820" timestamp="1591775125274" />
     <state x="614" y="281" width="670" height="731" key="search.everywhere.popup/1920.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1589471731028" />
-    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1591587002042" />
+    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1591733687811" />
   </component>
 </project>

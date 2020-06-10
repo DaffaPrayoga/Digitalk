@@ -48,38 +48,35 @@
         });
     }
 
-    // var scroll;
-    // $(window).on("scroll", function () {
-    //     scroll = $(window).scrollTop();
-    //     if (scroll > 100) {
-    //         $(".navblack").css({"background-color": "rgba(255,255,255,1)"});
-    //         $(".navblack").addClass("z-depth-12");
-    //         $(".navblack").removeClass("z-depth-0");
-    //         // $(".nav-a").addClass("grey-text text-darken-4");
-    //         $("#logo-svg").css({"height": "60px", "margin-top": "5px"});
-    //     } else {
-    //         $(".navblack").css({"background-color": "transparent"});
-    //         $("#logo-svg").css({"height": "90px", "margin-top": "10px"});
-    //         // $(".nav-a").removeClass("grey-text text-darken-4");
-    //         $(".navblack").addClass("z-depth-0");
-    //         $(".navblack").removeClass("z-depth-12");
-    //     }
-    // });
-
-    $(document).ready(function () {
-        $('.select2kontol').select2();
-        $('#tampildata').DataTable({
-            "language": {
-                "emptyTable": "<img style='height:200px;' src='{{asset('img/footer-img.svg')}}'><h5 class='font-black grey-text text-darken-3' style='letter-spacing:-1px;font-size:30px;margin-top:10px;'>Ups, Data Kosong!</h5><h5 class='grey-text font-black' style='margin-top:-5px;font-size:18px;margin-bottom:30px;'>Tidak ada data pada bagian ini.</h5>"
-            }
-        });
-    });
     ClassicEditor
         .create(document.querySelector('#editor'))
         .catch(error => {
             console.error(error);
         });
 
+</script>
+<script>
+    $(document).ready(function () {
+        fetch_customer_data();
+
+        function fetch_customer_data(query = '') {
+            $.ajax({
+                url: "{{ route('search') }}",
+                method: 'GET',
+                data: {query: query},
+                dataType: 'json',
+                success: function (data) {
+                    $('#search_result').html(data.table_data);
+                    // $('#total_records').text(data.total_data);
+                }
+            })
+        }
+
+        $(document).on('keyup', '#search_barz', function () {
+            var query = $(this).val();
+            fetch_customer_data(query);
+        });
+    });
 </script>
 @if (session('alert'))
     <script type="text/javascript">

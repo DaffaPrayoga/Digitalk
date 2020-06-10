@@ -11,10 +11,12 @@
             </div>
             <div class="uk-navbar-right">
                 <div class="uk-navbar-item uk-visible@m">
-                    <form class="uk-search uk-search-navbar"
+                    <form action="{{route('search')}}" onsubmit="event.preventDefault()"
+                          class="uk-search uk-search-navbar" method="get" enctype="multipart/form-data"
                           style="background-color: #f5f5f5;border-radius: 30px;padding-left: 10px;padding-right: 10px;">
                         <span uk-search-icon></span>
-                        <input class="uk-search-input font-bold" name="search_thread" type="search"
+                        <input class="uk-search-input font-bold" name="q" type="search"
+                               uk-toggle="target: #modal-search"
                                placeholder="Search..." style="font-size: 0.9rem;">
                     </form>
                 </div>
@@ -33,10 +35,13 @@
                                  style="height: 40px;width: 40px;border-radius: 40px;margin-right: 10px;" uk-img alt="">
                             <span class="brand-chip font-extrabold uk-text-capitalize uk-text-middle grey-text-3"
                                   style="font-size: 14px;">{{\Illuminate\Support\Facades\Auth::user()->name}} <span
-                                    uk-icon="icon: chevron-down" type="button" style="margin-left: 10px;margin-right: 10px;"></span></span>
+                                    uk-icon="icon: chevron-down" type="button"
+                                    style="margin-left: 10px;margin-right: 10px;"></span></span>
                         </div>
-                        <div uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;offset: 30"
-                             style="border-radius: 6px;z-index: 1000 !important;top: 100px !important;" class="z-depth-13">
+                        <div
+                            uk-dropdown="animation: uk-animation-slide-top-small;pos: bottom-justify;mode: click;offset: 30"
+                            style="border-radius: 6px;z-index: 1000 !important;top: 100px !important;"
+                            class="z-depth-13">
                             <ul class="uk-nav uk-dropdown-nav">
                                 <li class="uk-nav-header font-extrabold" style="letter-spacing: 0.5px;">SETTING</li>
                                 <li><a class="font-light" href="#">Profile</a></li>
@@ -136,7 +141,8 @@
                  style="background-image: url({{asset('img/register.svg')}});background-position-x: -80px;"
                  uk-height-viewport></div>
             <div class="uk-padding-large">
-                <p class="grey-text-4 font-heavy uk-text-center" style="font-size: 2.2rem;margin-bottom: 30px;">Make you
+                <p class="grey-text-4 font-heavy uk-text-center" style="font-size: 2.2rem;margin-bottom: 30px;">Make
+                    your
                     account<span class="accent-color">.</span></p>
                 <form action="{{ route('register_account') }}" method="post" enctype="multipart/form-data"
                       style="padding-left: 80px;padding-right: 80px;">
@@ -196,6 +202,43 @@
                             href="#" uk-toggle="target: #modal-login" class="font-extrabold accent-color">Sign In</a>
                     </p>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal-search" class="uk-modal-full" uk-modal style="overflow-x: hidden;">
+    <div class="uk-modal-dialog" style="overflow-y: auto;min-height: 100vh">
+        <button class="uk-modal-close-default uk-icon-button" type="button" uk-close></button>
+        <div class="uk-grid-collapse uk-flex-middle" uk-grid>
+            <div class="uk-width-expand">
+                <img src="{{asset('img/search.svg')}}" style="height: 650px;top: -200px;left: -250px;z-index: -10"
+                     class="uk-position-top-left" alt="">
+                <div class="uk-padding-large">
+                    <div class="uk-container uk-container-small">
+                        <p class="grey-text-4 font-heavy uk-text-center" style="font-size: 3.2rem;margin-bottom: 30px;">
+                            Search Thread<span class="accent-color">.</span></p>
+                        <form action="{{route('search')}}" onsubmit="event.preventDefault()"
+                              class="uk-search uk-search-navbar uk-align-center" method="get"
+                              enctype="multipart/form-data"
+                              style="background-color: #f5f5f5;border-radius: 30px;padding-left: 10px;padding-right: 10px;">
+                            <span uk-search-icon style="left: 10px;"></span>
+                            <input id="search_barz" class="uk-search-input font-bold" name="q" type="search"
+                                   placeholder="Search..."
+                                   style="font-size: 1rem;height: 50px;padding-left: 13%;border-radius: 30px !important;">
+                        </form>
+                        <div class="result" style="padding-top: 40px;">
+                            <div id="search_result" class="uk-grid" uk-grid="masonry: true">
+                                <div class="uk-width-1-1">
+                                    <div class="uk-text-center">
+                                        <img src="{{asset('img/search.svg')}}" uk-img style="height: 250px;margin-top: -30px;" alt="">
+                                        <p class="grey-text-3 font-extrabold" style="font-size: 25px;">No Search found</p>
+                                        <p class="grey-text-1 font-regular" style="font-size: 17px;margin-top: -15px;">please retype in the search bar.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

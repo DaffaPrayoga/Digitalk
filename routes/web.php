@@ -28,6 +28,11 @@ Route::post('/register_account', 'UserController@register_account')->name('regis
 Route::post('/spam_report', 'ThreadReportController@spam_report')->name('spam_report');
 Route::post('/inappropriate_report', 'ThreadReportController@inappropriate_report')->name('inappropriate_report');
 Route::post('/other_report', 'ThreadReportController@other_report')->name('other_report');
+//Upvote & Downvote thread
+Route::post('/upvote', 'ThreadController@upvote')->name('upvote');
+Route::post('/downvote', 'ThreadController@downvote')->name('downvote');
+//search
+Route::get('/search', 'HomeController@search')->name('search');
 //admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin');
