@@ -8,12 +8,12 @@
 @section('navbar')
     @include('layouts.navbar')
 @show
-<div class="uk-container uk-margin-medium-top">
+<div class="uk-container uk-margin-medium-top uk-margin-large-bottom">
     <div class="headerz" style="margin-top: -20px;">
-        <img src="{{asset('img/no_gadget.svg')}}" class="uk-animation-scale-up delay-animation" uk-img
-             style="height: 150px;display: inline-block" alt="">
+        <img src="{{asset('img/no_gadget.svg')}}" class="uk-animation-scale-up" uk-img
+             style="height: 150px;display: inline-block;animation-delay: 0.3s" alt="">
         <p class="font-heavy grey-text-4 uk-heading-small uk-animation-slide-left"
-           style="display:inline-block;position:relative;top: 15px;left: 10px;animation-delay: 1s">Brands<span
+           style="display:inline-block;position:relative;top: 15px;left: 10px;animation-delay: 0.6s">Forum<span
                 class="accent-color">.</span></p>
     </div>
     <div class="uk-child-width-expand@s uk-text-center uk-margin-medium-top" uk-grid

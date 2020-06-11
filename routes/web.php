@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/forum', 'HomeController@forum_page')->name('forum');
+Route::get('/threads', 'HomeController@thread_page')->name('threads');
+Route::get('/threads/articles', 'HomeController@thread_article_page')->name('thread_article');
+Route::get('/threads/images', 'HomeController@thread_image_page')->name('thread_image');
+Route::get('/threads/videos', 'HomeController@thread_video_page')->name('thread_video');
 Route::get('/forum/brand/{name}', 'HomeController@brand_page')->name('brand_home');
 Route::get('/forum/brand/{name}/{slug}', 'HomeController@gadget_page')->name('gadget_home');
 Route::get('/thread/{thread_key}', 'HomeController@thread_detail_page')->name('thread_detail');
@@ -35,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/downvote', 'ThreadController@downvote')->name('downvote');
     //create thread
     Route::post('/create_thread', 'ThreadController@store')->name('create_thread');
+    //Thread Management
+    Route::get('/my_threads', 'HomeController@my_threads_page')->name('my_thread');
 });
 //admin
 Route::group(['middleware' => ['auth', 'admin']], function () {

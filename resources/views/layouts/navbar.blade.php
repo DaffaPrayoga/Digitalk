@@ -21,16 +21,15 @@
                     </form>
                 </div>
                 <ul class="uk-navbar-nav uk-visible@m">
-                    <li><a href="#" class="uk-text-capitalize font-extrabold grey-text-3" style="font-size: 1rem;">Threads</a>
+                    <li><a href="{{route('threads')}}" class="uk-text-capitalize font-extrabold @if (request()->segment(1) == 'threads') accent-color @else grey-text-3 @endif" style="font-size: 1rem; @if (request()->segment(1)  == 'threads') border-bottom: 3px solid #ec454f @endif">Threads</a>
                     </li>
-                    <li><a href="{{route('forum')}}" class="uk-text-capitalize font-extrabold grey-text-3"
-                           style="font-size: 1rem;">Forum</a></li>
-                    <li><a href="#" class="uk-text-capitalize font-extrabold grey-text-3" style="font-size: 1rem;">Popular</a>
+                    <li><a href="{{route('forum')}}" class="uk-text-capitalize font-extrabold @if (request()->segment(1) == 'forum') accent-color @else grey-text-3 @endif" style="font-size: 1rem; @if (request()->segment(1) == 'forum') border-bottom: 3px solid #ec454f @endif">Forum</a></li>
+                    <li><a href="#" class="uk-text-capitalize font-extrabold grey-text-3 @if (request()->segment(1) == 'popular') accent-color @else grey-text-3 @endif" style="font-size: 1rem; @if (request()->segment(1) == 'popular') border-bottom: 3px solid #ec454f @endif">Popular</a>
                     </li>
                 </ul>
                 <div class="uk-navbar-item uk-visible@m">
                     @if(\Illuminate\Support\Facades\Auth::check())
-                        <div class="account" style="top: 10px;right: 20px;cursor: pointer;border-radius: 30px;">
+                        <div class="account" style="top: 10px;right: 20px;cursor: pointer;padding-left: 30px;border-left: 1px solid #ddd">
                             <img src="{{asset('img/user.svg')}}"
                                  style="height: 40px;width: 40px;border-radius: 40px;margin-right: 10px;" uk-img alt="">
                             <span class="brand-chip font-extrabold uk-text-capitalize uk-text-middle grey-text-3"
@@ -43,9 +42,9 @@
                             style="border-radius: 6px;z-index: 1000 !important;top: 100px !important;"
                             class="z-depth-13">
                             <ul class="uk-nav uk-dropdown-nav">
-                                <li class="uk-nav-header font-extrabold" style="letter-spacing: 0.5px;">SETTING</li>
-                                <li><a class="font-light" href="#">Profile</a></li>
-                                <li><a class="font-light" href="#">Threads</a></li>
+                                <li class="uk-nav-header font-extrabold" style="letter-spacing: 0.5px;">OPTIONS</li>
+                                <li><a class="font-light" href="#">Manage Profile</a></li>
+                                <li><a class="font-light" href="#">My Threads</a></li>
                                 <li>
                                     <a href="{{route('logout')}}"
                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"

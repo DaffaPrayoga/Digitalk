@@ -17,4 +17,10 @@ class Gadget extends Model
     {
         return $this->belongsTo('App\Brand', 'brand_id', 'id');
     }
+
+    public function countThread()
+    {
+        $count = Thread::where('gadget_id', $this->id)->count();
+        return $count;
+    }
 }

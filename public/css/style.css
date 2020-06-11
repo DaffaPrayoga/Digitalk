@@ -162,6 +162,9 @@ body {
     background: -webkit-linear-gradient(270deg, #f44881, #ec454f) !important;
     background: -o-linear-gradient(270deg, #f44881, #ec454f) !important;
     background: linear-gradient(270deg, #f44881, #ec454f) !important;
+    transition: 0.5s all ease;
+    -webkit-transition: 0.5s all ease;
+    -o-transition: 0.5s all ease;
 }
 
 .bg-gradient-no-interactive {

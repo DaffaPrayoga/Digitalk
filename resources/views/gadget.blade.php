@@ -10,17 +10,17 @@
 @show
 <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
     <div class="uk-padding" style="background: #f5f5f5;border-radius: 20px;">
-        <div class="z-depth-12 uk-animation-toggle white uk-animation-scale-up delay-animation" tabindex="0"
-             style="padding: 10px 40px;border-radius: 30px;display: inline-block;">
+        <div class="z-depth-12 uk-animation-toggle white uk-animation-scale-up" tabindex="0"
+             style="padding: 10px 40px;border-radius: 30px;display: inline-block;animation-delay: 0.3s">
             <img class="uk-align-center" src="{{asset('img/brand_logo/'.$brands->image)}}"
                  style="height: 30px;margin-top: 24px;margin-bottom: 35px;" alt="">
         </div>
         <p class="font-heavy grey-text-4 uk-heading-small uk-animation-slide-left uk-animation-toggle"
-           style="display: inline-block;top: -35px;left: 20px;position: relative;animation-delay: 0.9s">{{$gadget->name}}
+           style="display: inline-block;top: -35px;left: 20px;position: relative;animation-delay: 0.6s">{{$gadget->name}}
             <span
                 class="accent-color">.</span></p>
         <ul class="uk-breadcrumb uk-animation-toggle uk-animation-slide-bottom"
-            style="position:absolute;margin-top: -15px;animation-delay: 1s;">
+            style="position:absolute;margin-top: -15px;animation-delay: 0.8s;">
             <li><a class="uk-text-capitalize" href="{{url(request()->segment(1))}}">{{request()->segment(1)}}</a></li>
             <li><a class="uk-text-capitalize" href="{{url(request()->segment(1))}}">{{request()->segment(2)}}</a></li>
             <li><a class="uk-text-capitalize"
@@ -31,7 +31,7 @@
             </li>
         </ul>
         <img src="{{asset('img/no_gadget_4.svg')}}" class="uk-animation-scale-down" uk-img
-             style="height: 110px;top: 15px;float: right;position:relative;animation-delay: 1.4s"
+             style="height: 110px;top: 15px;float: right;position:relative;animation-delay: 1s"
              alt="">
     </div>
     <p class="grey-text-1 font-regular">{{$gadget->name}} Threads :</p>

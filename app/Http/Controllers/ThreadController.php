@@ -117,6 +117,9 @@ class ThreadController extends Controller
         $vote->user_id = Auth::user()->id;
         $vote->vote_status = 1;
         $vote->save();
+        $thread = Thread::where('thread_key', $request['thread_key'])->first();
+        $thread->up_vote = $thread->up_vote + 1;
+        $thread->update();
 
         return back()->with('toast_success', 'Thread upvoted');
     }
@@ -128,6 +131,9 @@ class ThreadController extends Controller
         $vote->user_id = Auth::user()->id;
         $vote->vote_status = 2;
         $vote->save();
+        $thread = Thread::where('thread_key', $request['thread_key'])->first();
+        $thread->up_vote = $thread->up_vote - 1;
+        $thread->update();
 
         return back()->with('toast_success', 'Thread downvoted');
     }

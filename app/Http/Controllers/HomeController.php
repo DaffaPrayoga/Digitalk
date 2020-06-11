@@ -30,7 +30,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $banner = Gadget::orderBy('year_released', 'desc')->latest()->take(3)->get();
+        $hot_threads = Thread::orderBy('up_vote', 'desc')->take(30)->paginate(10);
+        return view('welcome', compact('banner', 'hot_threads'));
+    }
+
+    public function thread_page()
+    {
+        $latest_threads = Thread::where('thread_type', 0)->latest()->take(15)->get();
+        $latest_image_threads = Thread::where('thread_type', 1)->latest()->take(15)->get();
+        $latest_video_threads = Thread::where('thread_type', 2)->latest()->take(10)->get();
+        return view('all_thread', compact('latest_threads', 'latest_image_threads', 'latest_video_threads'));
     }
 
     public function forum_page()
@@ -67,11 +77,32 @@ class HomeController extends Controller
                 $threads = Thread::where([
                     ['brand_id', $brands->id],
                     ['gadget_id', $gadget->id],
-                    ['show_status', 0],z
+                    ['show_status', 0],
                 ])->orderBy('created_at', 'desc')->paginate(10);
                 return view('gadget', compact('brands', 'gadget', 'threads'));
             }
         }
+    }
+
+    public function thread_article_page()
+    {
+        $latest_threads = Thread::where('thread_type', 0)->latest()->paginate(12);
+        $type = 0;
+        return view('thread_types', compact('latest_threads', 'type'));
+    }
+
+    public function thread_image_page()
+    {
+        $latest_threads = Thread::where('thread_type', 1)->latest()->paginate(12);
+        $type = 1;
+        return view('thread_types', compact('latest_threads', 'type'));
+    }
+
+    public function thread_video_page()
+    {
+        $latest_threads = Thread::where('thread_type', 2)->latest()->paginate(12);
+        $type = 2;
+        return view('thread_types', compact('latest_threads', 'type'));
     }
 
     public function thread_detail_page($thread_key)
