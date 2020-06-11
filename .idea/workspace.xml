@@ -3,17 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0fedecc1-b020-4be8-84ac-f25cd6cd2d9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BrandController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BrandController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GadgetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GadgetController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ThreadReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ThreadReportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/brand/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/brand/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/js.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/js.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/thread_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/thread_detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Brand.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/gadget/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/gadget/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,6 +232,7 @@
       <workItem from="1591577033328" duration="14327000" />
       <workItem from="1591643075783" duration="2336000" />
       <workItem from="1591683426344" duration="41848000" />
+      <workItem from="1591856728839" duration="2472000" />
     </task>
     <servers />
   </component>
@@ -302,14 +294,14 @@
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state x="625" y="241" key="run.anything.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1591381349850" />
-    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup" timestamp="1591821638327">
+    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup" timestamp="1591871805148">
       <screen x="0" y="23" width="1920" height="1000" />
     </state>
     <state x="461" y="234" width="670" height="609" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1591779622042" />
     <state x="461" y="235" width="670" height="553" key="search.everywhere.popup/0.23.1440.817@0.23.1440.817" timestamp="1591782506829" />
     <state x="461" y="236" width="670" height="555" key="search.everywhere.popup/0.23.1440.820@0.23.1440.820" timestamp="1591799209527" />
     <state x="614" y="281" width="670" height="731" key="search.everywhere.popup/1920.180.1440.900/0.0.1920.1080@0.0.1920.1080" timestamp="1589471731028" />
-    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1591821638327" />
+    <state x="614" y="283" width="670" height="676" key="search.everywhere.popup/1920.203.1440.877/0.23.1920.1000@0.23.1920.1000" timestamp="1591871805148" />
     <state x="2381" y="431" width="670" height="593" key="search.everywhere.popup/1920.203.1440.877/0.23.1920.1000@1920.203.1440.877" timestamp="1591817494138" />
   </component>
 </project>

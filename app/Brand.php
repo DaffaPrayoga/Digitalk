@@ -8,6 +8,7 @@ use Laravel\Scout\Searchable;
 class Brand extends Model
 {
     use Searchable;
+
     protected $table = "brand";
     protected $primaryKey = 'id';
     protected $fillable = ['name', 'image'];
@@ -28,6 +29,12 @@ class Brand extends Model
     {
         $count = Thread::where('brand_id', $this->id)->count();
         return $count;
+    }
+
+    public static function getBrandName($id)
+    {
+         $brand = Brand::find($id);
+         return $brand->name;
     }
 
     /**

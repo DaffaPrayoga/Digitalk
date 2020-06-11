@@ -34,17 +34,17 @@
                             <td>{{$v['id']}}</td>
                             <td>{{$v['name']}}</td>
                             <td>
-                                {{$v->['']}}
+                                {{\App\Brand::getBrandName($v['brand_id'])}}
                             </td>
-                            <td>{{$v->year_released}}</td>
+                            <td>{{$v['year_released']}}</td>
                             <td>
-                                <a href="{{route('gadgets.edit', $v->id)}}" class="uk-icon-button" uk-icon="pencil"></a>
-                                <form id="delete{{$v->id}}" method="post"
+                                <a href="{{route('gadgets.edit', $v['id'])}}" class="uk-icon-button" uk-icon="pencil"></a>
+                                <form id="delete{{$v['id']}}" method="post"
                                       onsubmit="event.preventDefault();comfirm_popup(this, 'Are you sure want to delete this?');"
-                                      action="{{route('gadgets.delete', $v->id)}}"
+                                      action="{{route('gadgets.delete', $v['id'])}}"
                                       style="display: inline">
                                     @csrf
-                                    <input type="hidden" value="{{$v->id}}"
+                                    <input type="hidden" value="{{$v['id']}}"
                                            name="id">
                                     <button type="submit"
                                             class="uk-icon-button"
