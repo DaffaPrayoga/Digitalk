@@ -105,9 +105,27 @@ class ThreadController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $delete = Thread::where('thread_key', $request['thread_key'])->first();
+        $delete->vote()->delete();
+        $delete->thread_report()->delete();
+        $delete->delete();
+
+        return redirect()->route('my_thread')->with('toast_success', 'Thread Deleted!');
+    }
+
+    public function hide(Request $request)
+    {
+        $hide = Thread::where('thread_key', $request['thread_key'])->first();
+        if ($hide->show_status == 0) {
+            $hide->show_status = 1;
+        } elseif ($hide->show_status == 1) {
+            $hide->show_status = 0;
+        }
+        $hide->update();
+
+        return redirect()->route('my_thread')->with('toast_success', 'Thread is now hidden!');
     }
 
     public function upvote(Request $request)

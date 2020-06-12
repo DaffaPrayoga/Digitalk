@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/create_thread', 'ThreadController@store')->name('create_thread');
     //Thread Management
     Route::get('/my_threads', 'HomeController@my_threads_page')->name('my_thread');
+    Route::post('delete_thread', 'ThreadController@destroy')->name('delete_tread');
+    Route::post('hide_thread', 'ThreadController@hide')->name('hide_tread');
 });
 //admin
 Route::group(['middleware' => ['auth', 'admin']], function () {

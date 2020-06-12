@@ -44,7 +44,7 @@
                             <ul class="uk-nav uk-dropdown-nav">
                                 <li class="uk-nav-header font-extrabold" style="letter-spacing: 0.5px;">OPTIONS</li>
                                 <li><a class="font-light" href="#">Manage Profile</a></li>
-                                <li><a class="font-light" href="#">My Threads</a></li>
+                                <li><a class="font-light" href="{{route('my_thread')}}">My Threads</a></li>
                                 <li>
                                     <a href="{{route('logout')}}"
                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"

@@ -31,16 +31,31 @@ class HomeController extends Controller
     public function index()
     {
         $banner = Gadget::orderBy('year_released', 'desc')->latest()->take(3)->get();
-        $hot_threads = Thread::orderBy('up_vote', 'desc')->take(30)->paginate(10);
+        $hot_threads = Thread::where('show_status', 0)->orderBy('up_vote', 'desc')->take(30)->paginate(10);
         return view('welcome', compact('banner', 'hot_threads'));
     }
 
     public function thread_page()
     {
-        $latest_threads = Thread::where('thread_type', 0)->latest()->take(15)->get();
-        $latest_image_threads = Thread::where('thread_type', 1)->latest()->take(15)->get();
-        $latest_video_threads = Thread::where('thread_type', 2)->latest()->take(10)->get();
+        $latest_threads = Thread::where([
+            ['thread_type', 0],
+            ['show_status', 0],
+        ])->latest()->take(15)->get();
+        $latest_image_threads = Thread::where([
+            ['thread_type', 1],
+            ['show_status', 0],
+        ])->latest()->take(15)->get();
+        $latest_video_threads = Thread::where([
+            ['thread_type', 2],
+            ['show_status', 0],
+        ])->latest()->take(10)->get();
         return view('all_thread', compact('latest_threads', 'latest_image_threads', 'latest_video_threads'));
+    }
+
+    public function my_threads_page()
+    {
+        $threads = Thread::where('created_by', Auth::user()->id)->latest()->paginate(15);
+        return view('my_thread', compact('threads'));
     }
 
     public function forum_page()
@@ -86,21 +101,30 @@ class HomeController extends Controller
 
     public function thread_article_page()
     {
-        $latest_threads = Thread::where('thread_type', 0)->latest()->paginate(12);
+        $latest_threads = Thread::where([
+            ['thread_type', 0],
+            ['show_status', 0]
+        ])->latest()->paginate(12);
         $type = 0;
         return view('thread_types', compact('latest_threads', 'type'));
     }
 
     public function thread_image_page()
     {
-        $latest_threads = Thread::where('thread_type', 1)->latest()->paginate(12);
+        $latest_threads = Thread::where([
+            ['thread_type', 1],
+            ['show_status', 0]
+        ])->latest()->paginate(12);
         $type = 1;
         return view('thread_types', compact('latest_threads', 'type'));
     }
 
     public function thread_video_page()
     {
-        $latest_threads = Thread::where('thread_type', 2)->latest()->paginate(12);
+        $latest_threads = Thread::where([
+            ['thread_type', 2],
+            ['show_status', 0]
+        ])->latest()->paginate(12);
         $type = 2;
         return view('thread_types', compact('latest_threads', 'type'));
     }
@@ -134,6 +158,7 @@ class HomeController extends Controller
             if ($query != '') {
                 $data = Thread::join('brand', 'thread.brand_id', '=', 'brand.id')->join('gadget', 'thread.gadget_id', '=', 'gadget.id')
                     ->select('thread.*', 'brand.name', 'gadget.name')
+                    ->where('show_status', 0)
                     ->where('title', 'like', '%' . $query . '%')
                     ->orWhere('article', 'like', '%' . $query . '%')
                     ->orWhere('brand.name', 'like', '%' . $query . '%')

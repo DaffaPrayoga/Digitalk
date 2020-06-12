@@ -11,27 +11,19 @@
 <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
     <div class="uk-padding" style="background: #f5f5f5;border-radius: 20px;">
         <div class="z-depth-12 uk-animation-toggle white uk-animation-scale-up" tabindex="0"
-             style="padding: 10px 40px;border-radius: 30px;display: inline-block;animation-delay: 0.3s">
-            <img class="uk-align-center" src="{{asset('img/brand_logo/'.$brands->image)}}"
-                 style="height: 30px;margin-top: 24px;margin-bottom: 35px;" alt="">
+             style="padding: 5px 30px;border-radius: 30px;display: inline-block;animation-delay: 0.3s">
+            <img class="uk-align-center" src="{{asset('img/no_gadget_4.svg')}}"
+                 style="height: 60px;margin-top: 24px;margin-bottom: 35px;" alt="">
         </div>
         <p class="font-heavy grey-text-4 uk-heading-small uk-animation-slide-left uk-animation-toggle"
-           style="display: inline-block;top: -35px;left: 20px;position: relative;animation-delay: 0.6s">{{$brands->name}}
+           style="display: inline-block;top: -50px;left: 20px;position: relative;animation-delay: 0.6s">My Threads
             <span
                 class="accent-color">.</span></p>
-        <ul class="uk-breadcrumb uk-animation-toggle uk-animation-slide-bottom"
-            style="position:absolute;margin-top: -15px;animation-delay: 0.8s;">
-            <li><a class="uk-text-capitalize" href="{{url(request()->segment(1))}}">{{request()->segment(1)}}</a></li>
-            <li><a class="uk-text-capitalize" href="{{url(request()->segment(1))}}">{{request()->segment(2)}}</a></li>
-            <li><a class="uk-text-capitalize"
-                   href="{{url(request()->segment(1) . "/" . request()->segment(2) . "/" . request()->segment(3))}}">{{request()->segment(3)}}</a>
-            </li>
-        </ul>
-        <img src="{{asset('img/no_brand.svg')}}" class="uk-animation-scale-down" uk-img
-             style="height: 200px;top: -30px;float: right;position:relative;animation-delay: 1s"
+        <img src="{{asset('img/video_threads.svg')}}" class="uk-animation-scale-down" uk-img
+             style="height: 170px;top: -15px;float: right;position:relative;animation-delay: 1s"
              alt="">
     </div>
-    <p class="grey-text-1 font-regular">{{$brands->name}} Threads :</p>
+    <p class="grey-text-1 font-regular">My Threads :</p>
     <div id="modal-sections" uk-modal>
         <div class="uk-modal-dialog" style="border-radius: 20px !important;">
             <button class="uk-modal-close-default uk-icon-button" type="button" uk-close></button>
@@ -61,7 +53,6 @@
                             <textarea class="form-looks font-light uk-textarea" name="article"
                                       placeholder="ketik artikel disini" style="min-height: 150px;"></textarea>
                         </div>
-                        <input type="hidden" name="brand_id" value="{{$brands->id}}">
                         <input type="hidden" name="thread_type" value="0">
                         <input type="hidden" name="returnTo" value="{{url()->current()}}">
                         <button class="uk-button bg-gradient white-text uk-border-rounded uk-margin-medium-top"
@@ -85,7 +76,6 @@
                                        placeholder="Click to select image" disabled>
                             </div>
                         </div>
-                        <input type="hidden" name="brand_id" value="{{$brands->id}}">
                         <input type="hidden" name="thread_type" value="1">
                         <input type="hidden" name="returnTo" value="{{url()->current()}}">
                         <button class="uk-button bg-gradient white-text uk-border-rounded uk-margin-medium-top"
@@ -104,7 +94,6 @@
                             <input class="uk-input form-looks font-light" placeholder="Link video (embed)"
                                    style="height: 50px;font-size: 14px;" name="video_embed_link" type="text" required>
                         </div>
-                        <input type="hidden" name="brand_id" value="{{$brands->id}}">
                         <input type="hidden" name="thread_type" value="2">
                         <input type="hidden" name="returnTo" value="{{url()->current()}}">
                         <button class="uk-button bg-gradient white-text uk-border-rounded uk-margin-medium-top"
@@ -154,7 +143,8 @@
                                     <button type="button"
                                             @if(\Illuminate\Support\Facades\Auth::check()) onclick="$('#upvote{{$t->id}}').submit()"
                                             @else onclick="warning_toast('Please login first before you can vote.')"
-                                            @endif @if(\Illuminate\Support\Facades\Auth::check() && $t->getVoteStatusAttribute(\Illuminate\Support\Facades\Auth::user()->id) == 'voted') class="uk-icon-button" disabled uk-tooltip="You have voted"
+                                            @endif @if(\Illuminate\Support\Facades\Auth::check() && $t->getVoteStatusAttribute(\Illuminate\Support\Facades\Auth::user()->id) == 'voted') class="uk-icon-button"
+                                            disabled uk-tooltip="You have voted"
                                             @else class="uk-icon-button" @endif uk-icon="arrow-up"></button>
                                 </form>
                             </div>
@@ -169,14 +159,16 @@
                                     <button type="button"
                                             @if(\Illuminate\Support\Facades\Auth::check()) onclick="$('#downvote{{$t->id}}').submit()"
                                             @else onclick="warning_toast('Please login first before you can vote.')"
-                                            @endif @if(\Illuminate\Support\Facades\Auth::check() && $t->getVoteStatusAttribute(\Illuminate\Support\Facades\Auth::user()->id) == 'voted') class="uk-icon-button" disabled uk-tooltip="title: You have voted; pos: bottom"
+                                            @endif @if(\Illuminate\Support\Facades\Auth::check() && $t->getVoteStatusAttribute(\Illuminate\Support\Facades\Auth::user()->id) == 'voted') class="uk-icon-button"
+                                            disabled uk-tooltip="title: You have voted; pos: bottom"
                                             @else class="uk-icon-button" @endif uk-icon="arrow-down"></button>
                                 </form>
                             </div>
                         </div>
                         <div class="uk-width-1-2 uk-width-expand">
                             <div class="uk-margin">
-                                <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#" class="accent-color font-regular">{{$t->creator->name}}</a>
+                                <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#"
+                                                                                                       class="accent-color font-regular">{{$t->creator->name}}</a>
                                     • {{\Illuminate\Support\Carbon::parse($t->created_at)->diffForHumans()}} <span
                                         uk-icon="icon: commenting" class="uk-position-right"
                                         style="padding-top:20px;padding-right:20px;height: 20px;"></span><span
@@ -210,6 +202,40 @@
                                            class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
                                            style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$t->gadget->name}}</a>
                                     @endif
+                                    <div class="uk-float-right">
+                                        @if($t->show_status == 0 || $t->show_status == 1)
+                                            <form id="hide_{{$t->id}}" action="{{route('hide_tread')}}" method="post"
+                                                  style="display: inline"
+                                                  onsubmit="event.preventDefault();comfirm_popup(this, 'Are you sure you want to @if($t->show_status == 0)
+                                                      hide @elseif($t->show_status == 1) unhide @endif this thread?')"
+                                                  enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" value="{{$t->thread_key}}" name="thread_key">
+                                                <a href="#"
+                                                   onclick="event.preventDefault();$('#hide_{{$t->id}}').submit()"
+                                                   class="brand-chip uk-border-rounded white-text accent-color-background-4"
+                                                   style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">@if($t->show_status == 0)
+                                                        Hide @elseif($t->show_status == 1) Unhide @endif
+                                                    Thread</a>
+                                            </form>
+                                        @elseif($t->show_status == 2)
+                                            <a href="" onclick="event.preventDefault()"
+                                               uk-tooltip="title: This thread has been banned by our admin because it's violating our community rules; pos: bottom"
+                                               class="brand-chip uk-border-rounded white-text accent-color-background-3"
+                                               style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">Banned</a>
+                                        @endif
+                                        <form id="delete_{{$t->id}}" action="{{route('delete_tread')}}" method="post"
+                                              style="display: inline;"
+                                              onsubmit="event.preventDefault();comfirm_popup(this, 'Are you sure you want to delete this thread?')"
+                                              enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" value="{{$t->thread_key}}" name="thread_key">
+                                            <a href="#"
+                                               onclick="event.preventDefault();$('#delete_{{$t->id}}').submit()"
+                                               class="brand-chip uk-border-rounded white-text accent-color-background"
+                                               style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">Delete</a>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -227,25 +253,11 @@
         <div class="uk-width-1-3">
             <div class="uk-card uk-card-default uk-card-small uk-card-body z-depth-15"
                  uk-sticky="offset: 110; bottom: #top" style="border-radius: 10px;z-index: 500;">
-                <div class="uk-padding-small">
-                    <p class="grey-text-3 font-heavy" style="font-size: 20px;">{{$brands->name}} Devices :</p>
+                <div class="uk-padding-small uk-text-center">
+                    <img data-src="{{asset('img/edukasi.svg')}}" uk-img style="height:200px;" alt="">
                     <div style="margin-top: 20px;">
-                        @forelse($data as $v)
-                            <a href="{{url('forum/brand/' . $v->brand->name . "/" . $v->slug)}}"
-                               class="uk-button uk-button-small uk-button-default tm-button-default uk-icon uk-text-capitalize white-text uk-border-rounded bg-gradient-noshadow"
-                               style="border: none;margin-right: 10px;margin-bottom: 15px;font-size: 0.8rem;">
-                                {{$v->name}}
-                            </a>
-                        @empty
-                            <div class="uk-text-center">
-                                <img src="{{asset('img/no_gadget_3.svg')}}" uk-img
-                                     style="height: 150px;margin-top: 30px;" alt="">
-                                <p class="grey-text-3 font-extrabold" style="font-size: 18px;">No Device Registered</p>
-                                <p class="grey-text-1 font-regular" style="font-size: 16px;margin-top: -20px;">no device
-                                    for this
-                                    brand.</p>
-                            </div>
-                        @endforelse
+                        <p class="grey-text-3 font-extrabold" style="font-size: 19px;">Please always make a thread that
+                            is relatable with technology & gadgets.</p>
                     </div>
                 </div>
             </div>
@@ -276,7 +288,8 @@
         $('.thread-tab-video').addClass('uk-active');
         $('#post').hide();
         $('#image').hide();
-        $('#video').show();brand.blade.php
+        $('#video').show();
+        brand.blade.php
     }
 
     function postTabOpen() {

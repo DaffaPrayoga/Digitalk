@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role'
+        'name', 'email', 'password', 'role', 'image'
     ];
 
     /**
@@ -36,4 +36,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAvatarAttribute()
+    {
+        if (empty($this->image) || $this->image == null) {
+            $pic = 'img/user.svg';
+        } else {
+            $pic = 'img/profile_picture/' . $this->image;
+        }
+        return $pic;
+    }
+
 }

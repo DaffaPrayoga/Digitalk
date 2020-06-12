@@ -35,7 +35,7 @@ class Thread extends Model
 
     public function thread_report()
     {
-        return $this->belongsTo('App\ThreadReport', 'thread_key', 'thread_key');
+        return $this->hasMany('App\ThreadReport', 'thread_key', 'thread_key');
     }
 
     public function getVoteStatusAttribute($user_id)
