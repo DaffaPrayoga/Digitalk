@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Gadget;
 use App\Thread;
 use App\ThreadVote;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -41,11 +43,17 @@ class ThreadController extends Controller
         $new = new Thread();
         $new->thread_key = 'TH' . Str::random(6);
         $new->created_by = Auth::user()->id;
+        $updateCount = User::find(Auth::user()->id);
+        $updateCount->thread_made = $updateCount->thread_made + 1;
+        $updateCount->update();
         if (!empty($request['brand_id'])) {
             $new->brand_id = $request['brand_id'];
         }
         if (!empty($request['gadget_id'])) {
             $new->gadget_id = $request['gadget_id'];
+            $gadget = Gadget::find($request['gadget_id']);
+            $gadget->thread_count = $gadget->thread_count + 1;
+            $gadget->update();
         }
         $new->title = $request['title'];
         $new->thread_type = $request['thread_type'];

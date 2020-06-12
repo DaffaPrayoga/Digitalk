@@ -57,7 +57,7 @@
                         </div>
                         <div class="uk-width-1-2 uk-width-expand">
                             <div class="uk-margin">
-                                <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#"
+                                <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="{{route('profile_page', $t->creator()->first()->name)}}"
                                                                                                        class="accent-color font-regular">{{$t->creator->name}}</a>
                                     • {{\Illuminate\Support\Carbon::parse($t->created_at)->diffForHumans()}} <span
                                         uk-icon="icon: commenting" class="uk-position-right"

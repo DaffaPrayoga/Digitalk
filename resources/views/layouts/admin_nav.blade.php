@@ -40,7 +40,7 @@
                               uk-icon="icon: chevron-right"></span>
                     @endif
                 </li>
-                <li><a href="#"
+                <li><a href="{{route('filter.index')}}"
                        class="@if (request()->segment(1) . '/' . request()->segment(2) == 'admin/manage_threads') bg-gradient white-text @else side-nav-link @endif transisi"
                        @if (request()->segment(1) . '/' . request()->segment(2) == 'admin/manage_threads') style="border-radius: 6px;padding: 10px 15px 10px 20px;font-size: 1rem;margin-bottom: 10px;margin-top: 10px;" @endif>
                         <span class="uk-margin-small-right" uk-icon="icon: hashtag"></span>

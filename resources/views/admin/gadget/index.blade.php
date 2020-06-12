@@ -31,7 +31,7 @@
                     </thead>
                     @foreach($data as $v)
                         <tr>
-                            <td>{{$v['id']}}</td>
+                            <td>GD000{{$v['id']}}</td>
                             <td>{{$v['name']}}</td>
                             <td>
                                 {{\App\Brand::getBrandName($v['brand_id'])}}

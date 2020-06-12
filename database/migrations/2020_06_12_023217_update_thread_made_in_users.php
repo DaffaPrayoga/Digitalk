@@ -14,7 +14,7 @@ class UpdateThreadMadeInUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->integer('thread_made')->nullable()->default(0)->after('image');
         });
     }
 

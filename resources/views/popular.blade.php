@@ -10,13 +10,98 @@
 @show
 <div class="uk-container uk-margin-medium-top uk-margin-large-bottom">
     <div class="headerz" style="margin-top: 0px;margin-bottom: 20px;">
+        <img src="{{asset('img/no_brand.svg')}}" class="uk-animation-scale-up" uk-img
+             style="height: 100px;display: inline-block;animation-delay: 0.7s" alt="">
+        <p class="font-heavy grey-text-4 uk-animation-slide-left"
+           style="display:inline-block;position:relative;top: 15px;left: 20px;animation-delay: 1s;font-size: 40px;">
+            Popular Gadgets<span
+                class="accent-color">.</span></p>
+    </div>
+    <div id="latest_threads" uk-slider class="uk-padding-small uk-margin-medium-top uk-margin-large-bottom">
+        <div class="uk-position-relative uk-visible-toggle uk-light">
+            <ul class="uk-slider-items uk-child-width-1-1 uk-grid">
+                @foreach($popular_gadget as $b)
+                    <li class="uk-width-1-4">
+                        <div
+                            class="uk-card uk-card-default uk-card-body uk-border-rounded uk-padding-small z-depth-15" style="padding-left: 30px;padding-right: 30px;padding-bottom: 30px;border-radius: 10px;">
+                            <div class="uk-grid" uk-grid>
+                                <div class="uk-width-1-1">
+                                    <a href="{{url('forum/brand/' . $b->brand->name . "/" . $b->slug)}}"
+                                       class="grey-text-3 font-extrabold"
+                                       style="font-size: 1.3rem;margin-bottom: 0px;display: block;position:relative;top: 20px;">
+                                        {{\Illuminate\Support\Str::limit($b->name, 150, '...')}}
+                                    </a>
+                                    <a href="{{url('forum/brand/' . $b->brand->name . "/" . $b->slug)}}" class="brand-chip uk-align-left font-bold uk-text-uppercase uk-display-block grey-text-1"
+                                       style="font-size: 1rem;letter-spacing: 1px;margin-bottom: 20px;margin-top: 20px;">{{$b->brand->name}}</a>
+                                    <a href="{{url('forum/brand/' . $b->brand->name . "/" . $b->slug)}}" class="brand-chip uk-align-left white-text bg-gradient-noshadow uk-border-rounded uk-display-block"
+                                       style="font-size: 13px;padding-left: 10px;padding-right: 10px;padding-top: 4px;padding-bottom: 3px;">+{{$b->countThread()}}
+                                        Threads</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+
+            <a class="uk-position-center-left uk-position-small uk-icon-button bg-gradient uk-hidden-hover" href="#"
+               uk-slidenav-previous uk-slider-item="previous" style="padding: 13px;transform: scale(1.2)"></a>
+            <a class="uk-position-center-right uk-position-small uk-icon-button bg-gradient uk-hidden-hover" href="#"
+               uk-slidenav-next uk-slider-item="next" style="padding: 13px;transform: scale(1.2)"></a>
+
+        </div>
+
+    </div>
+    <hr class="uk-divider-icon">
+    <div class="headerz" style="margin-top: 0px;margin-bottom: 20px;">
+        <img src="{{asset('img/person.svg')}}" class="uk-animation-scale-up" uk-img
+             style="height: 100px;display: inline-block;animation-delay: 0.7s" alt="">
+        <p class="font-heavy grey-text-4 uk-animation-slide-left"
+           style="display:inline-block;position:relative;top: 15px;left: 20px;animation-delay: 1s;font-size: 40px;">
+            King of threads<span
+                class="accent-color">.</span></p>
+    </div>
+    <div id="latest_image_threads" uk-slider class="uk-padding-small uk-margin-medium-top uk-margin-large-bottom">
+        <div class="uk-position-relative uk-visible-toggle uk-light">
+            <ul class="uk-slider-items uk-child-width-1-1 uk-grid">
+                @forelse($popular_user as $user)
+                    <li class="uk-width-1-4">
+                        <div class="uk-card uk-card-default uk-card-small uk-card-body z-depth-15" style="border-radius: 10px;z-index: 500;">
+                            <div class="uk-padding-small uk-text-center">
+                                <div class="uk-align-center"
+                                     style="height:100px;width: 100px;background-image: url({{asset($user->getAvatarAttribute())}});background-position: center;background-size: cover;background-repeat: no-repeat;border-radius: 100px;"
+                                     alt=""></div>
+                                <div style="margin-top: 20px;">
+                                    <a href="{{route('profile_page', $user->name)}}" class="grey-text-3 font-extrabold uk-text-capitalize" style="font-size: 19px;position: relative;top: -10px;">{{$user->name}}</a>
+                                    <div class="tags" style="margin-bottom: 10px;margin-top: 10px;">
+                                        <a href="" onclick="event.preventDefault()"
+                                           class="brand-chip uk-border-rounded white-text bg-gradient-noshadow"
+                                           style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">{{$user->getThreadCount()}} Threads</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                @empty
+                @endforelse
+            </ul>
+
+            <a class="uk-position-center-left uk-position-small uk-icon-button bg-gradient uk-hidden-hover" href="#"
+               uk-slidenav-previous uk-slider-item="previous" style="padding: 13px;transform: scale(1.2)"></a>
+            <a class="uk-position-center-right uk-position-small uk-icon-button bg-gradient uk-hidden-hover" href="#"
+               uk-slidenav-next uk-slider-item="next" style="padding: 13px;transform: scale(1.2)"></a>
+
+        </div>
+
+    </div>
+    <hr class="uk-divider-icon">
+    <div class="headerz" style="margin-top: 0px;margin-bottom: 20px;">
         <img src="{{asset('img/article_thread.svg')}}" class="uk-animation-scale-up" uk-img
              style="height: 100px;display: inline-block;animation-delay: 0.7s" alt="">
         <p class="font-heavy grey-text-4 uk-animation-slide-left"
            style="display:inline-block;position:relative;top: 15px;left: 20px;animation-delay: 1s;font-size: 40px;">
-            Latest Threads<span
+            Popular Threads<span
                 class="accent-color">.</span></p>
-        <a href="{{route('thread_article')}}"
+        <a href="{{route('popular_thread_article')}}"
            class="uk-button uk-button-default tm-button-default uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient uk-float-right"
            style="border: none;top: 40px;position:relative;">
             Show More
@@ -130,9 +215,9 @@
              style="height: 100px;display: inline-block;animation-delay: 0.7s" alt="">
         <p class="font-heavy grey-text-4 uk-animation-slide-left"
            style="display:inline-block;position:relative;top: 15px;left: 20px;animation-delay: 1s;font-size: 40px;">
-            Latest Image Threads<span
+            Popular Image Threads<span
                 class="accent-color">.</span></p>
-        <a href="{{route('thread_image')}}"
+        <a href="{{route('popular_thread_image')}}"
            class="uk-button uk-button-default tm-button-default uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient uk-float-right"
            style="border: none;top: 40px;position:relative;">
             Show More
@@ -246,9 +331,9 @@
              style="height: 100px;display: inline-block;animation-delay: 0.7s" alt="">
         <p class="font-heavy grey-text-4 uk-animation-slide-left"
            style="display:inline-block;position:relative;top: 15px;left: 20px;animation-delay: 1s;font-size: 40px;">
-            Latest Video Threads<span
+            Popular Video Threads<span
                 class="accent-color">.</span></p>
-        <a href="{{route('thread_video')}}"
+        <a href="{{route('popular_thread_video')}}"
            class="uk-button uk-button-default tm-button-default uk-text-capitalize font-extrabold white-text uk-border-rounded bg-gradient uk-float-right"
            style="border: none;top: 40px;position:relative;">
             Show More

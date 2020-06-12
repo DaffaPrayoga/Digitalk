@@ -24,7 +24,7 @@
                     <li><a href="{{route('threads')}}" class="uk-text-capitalize font-extrabold @if (request()->segment(1) == 'threads') accent-color @else grey-text-3 @endif" style="font-size: 1rem; @if (request()->segment(1)  == 'threads') border-bottom: 3px solid #ec454f @endif">Threads</a>
                     </li>
                     <li><a href="{{route('forum')}}" class="uk-text-capitalize font-extrabold @if (request()->segment(1) == 'forum') accent-color @else grey-text-3 @endif" style="font-size: 1rem; @if (request()->segment(1) == 'forum') border-bottom: 3px solid #ec454f @endif">Forum</a></li>
-                    <li><a href="#" class="uk-text-capitalize font-extrabold grey-text-3 @if (request()->segment(1) == 'popular') accent-color @else grey-text-3 @endif" style="font-size: 1rem; @if (request()->segment(1) == 'popular') border-bottom: 3px solid #ec454f @endif">Popular</a>
+                    <li><a href="{{route('popular')}}" class="uk-text-capitalize font-extrabold @if (request()->segment(1) == 'popular') accent-color @else grey-text-3 @endif" style="font-size: 1rem; @if (request()->segment(1) == 'popular') border-bottom: 3px solid #ec454f @endif">Popular</a>
                     </li>
                 </ul>
                 <div class="uk-navbar-item uk-visible@m">

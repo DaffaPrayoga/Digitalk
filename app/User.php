@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role', 'image'
+        'name', 'email', 'password', 'role', 'image', 'thread_made'
     ];
 
     /**
@@ -45,6 +45,30 @@ class User extends Authenticatable
             $pic = 'img/profile_picture/' . $this->image;
         }
         return $pic;
+    }
+
+    public function getThreadCount()
+    {
+        $data = Thread::where('created_by', $this->id)->count();
+        return $data;
+    }
+
+    public function getUpvoteCount()
+    {
+        $data = ThreadVote::where([
+            ['user_id', $this->id],
+            ['vote_status', 1]
+        ])->count();
+        return $data;
+    }
+
+    public function getDownvoteCount()
+    {
+        $data = ThreadVote::where([
+            ['user_id', $this->id],
+            ['vote_status', 2]
+        ])->count();
+        return $data;
     }
 
 }

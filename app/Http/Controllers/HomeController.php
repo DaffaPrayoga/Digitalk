@@ -6,6 +6,7 @@ use App\Brand;
 use App\Gadget;
 use App\Thread;
 use App\ThreadReport;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +51,25 @@ class HomeController extends Controller
             ['show_status', 0],
         ])->latest()->take(10)->get();
         return view('all_thread', compact('latest_threads', 'latest_image_threads', 'latest_video_threads'));
+    }
+
+    public function popular_page()
+    {
+        $latest_threads = Thread::where([
+            ['thread_type', 0],
+            ['show_status', 0],
+        ])->orderBy('up_vote', 'desc')->take(15)->get();
+        $latest_image_threads = Thread::where([
+            ['thread_type', 1],
+            ['show_status', 0],
+        ])->orderBy('up_vote', 'desc')->take(15)->get();
+        $latest_video_threads = Thread::where([
+            ['thread_type', 2],
+            ['show_status', 0],
+        ])->orderBy('up_vote', 'desc')->take(10)->get();
+        $popular_gadget = Gadget::orderBy('thread_count', 'desc')->take(5)->get();
+        $popular_user = User::orderBy('thread_made', 'desc')->take(6)->get();
+        return view('popular', compact('latest_threads', 'latest_image_threads', 'latest_video_threads','popular_gadget','popular_user'));
     }
 
     public function my_threads_page()
@@ -129,6 +149,36 @@ class HomeController extends Controller
         return view('thread_types', compact('latest_threads', 'type'));
     }
 
+    public function popular_thread_article_page()
+    {
+        $latest_threads = Thread::where([
+            ['thread_type', 0],
+            ['show_status', 0]
+        ])->orderBy('up_vote', 'desc')->paginate(12);
+        $type = 0;
+        return view('popular_thread_types', compact('latest_threads', 'type'));
+    }
+
+    public function popular_thread_image_page()
+    {
+        $latest_threads = Thread::where([
+            ['thread_type', 1],
+            ['show_status', 0]
+        ])->orderBy('up_vote', 'desc')->paginate(12);
+        $type = 1;
+        return view('popular_thread_types', compact('latest_threads', 'type'));
+    }
+
+    public function popular_thread_video_page()
+    {
+        $latest_threads = Thread::where([
+            ['thread_type', 2],
+            ['show_status', 0]
+        ])->orderBy('up_vote', 'desc')->paginate(12);
+        $type = 2;
+        return view('popular_thread_types', compact('latest_threads', 'type'));
+    }
+
     public function thread_detail_page($thread_key)
     {
         $data = Thread::where('thread_key', $thread_key)->first();
@@ -148,6 +198,15 @@ class HomeController extends Controller
     {
         $brands = Brand::where('name', 'like', '%' . $_GET['q'] . '%')->get();
         return view('search', compact('brands'));
+    }
+
+    public function profile_page($name) {
+        $user = User::where('name', $name)->first();
+        $threads = Thread::where([
+            ['created_by', $user->id],
+            ['show_status', 0]
+        ])->latest()->paginate(15);
+        return view('person_profile', compact('threads','user'));
     }
 
     function search(Request $request)

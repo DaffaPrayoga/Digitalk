@@ -16,12 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('welcome');
 Route::get('/forum', 'HomeController@forum_page')->name('forum');
 Route::get('/threads', 'HomeController@thread_page')->name('threads');
+Route::get('/popular', 'HomeController@popular_page')->name('popular');
+Route::get('/popular/threads/articles', 'HomeController@popular_thread_article_page')->name('popular_thread_article');
+Route::get('/popular/threads/images', 'HomeController@popularthread_image_page')->name('popular_thread_image');
+Route::get('/popular/threads/videos', 'HomeController@popular_thread_video_page')->name('popular_thread_video');
 Route::get('/threads/articles', 'HomeController@thread_article_page')->name('thread_article');
 Route::get('/threads/images', 'HomeController@thread_image_page')->name('thread_image');
 Route::get('/threads/videos', 'HomeController@thread_video_page')->name('thread_video');
 Route::get('/forum/brand/{name}', 'HomeController@brand_page')->name('brand_home');
 Route::get('/forum/brand/{name}/{slug}', 'HomeController@gadget_page')->name('gadget_home');
 Route::get('/thread/{thread_key}', 'HomeController@thread_detail_page')->name('thread_detail');
+Route::get('/p/{name}', 'HomeController@profile_page')->name('profile_page');
 //create account
 Route::post('/register_account', 'UserController@register_account')->name('register_account');
 //search
@@ -67,6 +72,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::get('manage_reports/see/{thread_key}', 'ThreadReportController@show')->name('reports.show');
         Route::post('manage_reports/ban/{id}', 'ThreadReportController@ban')->name('reports.ban');
         Route::post('manage_reports/ignore/{id}', 'ThreadReportController@ignore')->name('reports.ignore');
+        //Manage Filter Thread
+        Route::get('manage_threads', 'ThreadReportController@index_filter')->name('filter.index');
     });
 });
 Route::group(['middleware' => ['auth', 'super_admin']], function () {

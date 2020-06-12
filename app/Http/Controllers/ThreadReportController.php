@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\ThreadReport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,6 +73,19 @@ class ThreadReportController extends Controller
             ['report_status', 0]
         ])->get();
         return view('admin.report.index', compact('data'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_filter()
+    {
+        $data = Thread::whereDate('created_at', '=', Carbon::today())->where([
+            ['show_status', 0],
+        ])->orderBy('created_at')->get();
+        return view('admin.filter_threads.index', compact('data'));
     }
 
     /**

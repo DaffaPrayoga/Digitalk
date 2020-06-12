@@ -73,7 +73,7 @@
                                     <div class="uk-width-expand">
                                         <div class="uk-margin">
                                             <p class="grey-text font-light" style="font-size: 0.9rem">Posted by
-                                                <a href="#" class="accent-color font-regular">{{$t->creator->name}}</a>
+                                                <a href="{{route('profile_page', $t->creator()->first()->name)}}" class="accent-color font-regular">{{$t->creator->name}}</a>
                                                 • {{ \Carbon\Carbon::parse($t->created_at)->diffForHumans()}}</p>
                                             <a href="{{route("thread_detail", $t->thread_key)}}"
                                                class="grey-text-3 font-extrabold"
@@ -189,7 +189,7 @@
                                     <div class="uk-width-expand">
                                         <div class="uk-margin">
                                             <p class="grey-text font-light" style="font-size: 0.9rem">Posted by
-                                                <a href="#" class="accent-color font-regular">{{$t->creator->name}}</a>
+                                                <a href="{{route('profile_page', $t->creator()->first()->name)}}" class="accent-color font-regular">{{$t->creator->name}}</a>
                                                 • {{ \Carbon\Carbon::parse($t->created_at)->diffForHumans()}}</p>
                                             <a href="{{route("thread_detail", $t->thread_key)}}"
                                                class="grey-text-3 font-extrabold"
@@ -305,7 +305,7 @@
                                     <div class="uk-width-expand">
                                         <div class="uk-margin">
                                             <p class="grey-text font-light" style="font-size: 0.9rem">Posted by
-                                                <a href="#" class="accent-color font-regular">{{$t->creator->name}}</a>
+                                                <a href="{{route('profile_page', $t->creator()->first()->name)}}" class="accent-color font-regular">{{$t->creator->name}}</a>
                                                 • {{ \Carbon\Carbon::parse($t->created_at)->diffForHumans()}}</p>
                                             <a href="{{route("thread_detail", $t->thread_key)}}"
                                                class="grey-text-3 font-extrabold"

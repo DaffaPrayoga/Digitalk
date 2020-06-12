@@ -11,7 +11,7 @@
 <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
     <div class="uk-padding" style="background: #f5f5f5;border-radius: 20px;">
         <div class="z-depth-12 uk-animation-toggle white uk-animation-scale-up" tabindex="0"
-             style="padding: 5px 30px;border-radius: 30px;display: inline-block;animation-delay: 0.3s">
+             style="padding: 5px 20px;border-radius: 30px;display: inline-block;animation-delay: 0.3s">
             <img class="uk-align-center" src="{{asset('img/no_gadget_4.svg')}}"
                  style="height: 60px;margin-top: 24px;margin-bottom: 35px;" alt="">
         </div>
@@ -167,8 +167,7 @@
                         </div>
                         <div class="uk-width-1-2 uk-width-expand">
                             <div class="uk-margin">
-                                <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="#"
-                                                                                                       class="accent-color font-regular">{{$t->creator->name}}</a>
+                                <p class="grey-text font-light" style="font-size: 0.9rem">Posted by <a href="{{route('profile_page', $t->creator()->first()->name)}}" class="accent-color font-regular">{{$t->creator->name}}</a>
                                     • {{\Illuminate\Support\Carbon::parse($t->created_at)->diffForHumans()}} <span
                                         uk-icon="icon: commenting" class="uk-position-right"
                                         style="padding-top:20px;padding-right:20px;height: 20px;"></span><span
@@ -232,8 +231,8 @@
                                             <input type="hidden" value="{{$t->thread_key}}" name="thread_key">
                                             <a href="#"
                                                onclick="event.preventDefault();$('#delete_{{$t->id}}').submit()"
-                                               class="brand-chip uk-border-rounded white-text accent-color-background"
-                                               style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: #eee;text-decoration: none">Delete</a>
+                                               class="brand-chip uk-border-rounded white-text"
+                                               style="font-size: 13px;padding-left: 15px;padding-right: 15px;padding-top: 8px;padding-bottom: 8px;background-color: red;text-decoration: none">Delete</a>
                                         </form>
                                     </div>
                                 </div>
@@ -249,6 +248,7 @@
                         this brand.</p>
                 </div>
             @endforelse
+            @include('layouts.pagination', ['paginator' => $threads])
         </div>
         <div class="uk-width-1-3">
             <div class="uk-card uk-card-default uk-card-small uk-card-body z-depth-15"

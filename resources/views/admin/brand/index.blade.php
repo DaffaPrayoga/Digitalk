@@ -31,7 +31,7 @@
                     </thead>
                     @foreach($data as $v)
                         <tr>
-                            <td>{{$v['id']}}</td>
+                            <td>BR000{{$v['id']}}</td>
                             <td>{{$v['name']}}</td>
                             <td>
                                 <img src="{{asset('img/brand_logo/'.$v['image'])}}" style="height: 30px;" alt="">

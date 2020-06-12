@@ -16,12 +16,12 @@
         <div class="uk-width-1" style="margin-top: 30px;">
             <div class="uk-card uk-card-default uk-card-body z-depth-15"
                  style="border-radius: 6px;padding:20px 20px;">
-                <h5 class="grey-text-4 font-heavy" style="font-size: 1.8rem;margin-bottom: 45px;">Thread Reports</h5>
+                <h5 class="grey-text-4 font-heavy" style="font-size: 1.8rem;margin-bottom: 45px;">Today Threads</h5>
                 <table class="uk-table uk-table-divider" id="datatable">
                     <thead>
                     <tr>
                         <th style="font-weight: 500;">Thread Key</th>
-                        <th style="font-weight: 500;">Reason</th>
+                        <th style="font-weight: 500;">Title</th>
                         <th style="font-weight: 500;">Created At</th>
                         <th style="font-weight: 500;">Action</th>
                     </tr>
@@ -30,8 +30,7 @@
                         <tr>
                             <td>{{$v->thread_key}}</td>
                             <td>
-                                @if($v->report_type == 0) Spam Thread @elseif($v->report_type == 1) Inappropriate
-                                Thread @elseif($v->report_type == 2) {{$v->other_reason}} @endif
+                                {{$v->title}}
                             </td>
                             <td class="font-light grey-text text-darken-1">{{\Carbon\Carbon::parse($v->created_at)->diffForHumans()}}</td>
                             <td>
@@ -45,17 +44,6 @@
                                            name="thread_key">
                                     <button type="submit" uk-tooltip="title: Ban Thread; pos: bottom" uk-icon="minus-circle"
                                             class="uk-icon-button"></button>
-                                </form>
-                                <form id="delete{{$v->id}}" method="post"
-                                      onsubmit="event.preventDefault();comfirm_popup(this, 'Are you sure want to ignore this?');"
-                                      action="{{route('reports.ignore', $v->id)}}"
-                                      style="display: inline">
-                                    @csrf
-                                    <input type="hidden" value="{{$v->thread_key}}"
-                                           name="thread_key">
-                                    <button type="submit" uk-tooltip="title: Ignore Report; pos: bottom"
-                                            class="uk-icon-button"
-                                            uk-icon="trash"></button>
                                 </form>
                             </td>
                         </tr>

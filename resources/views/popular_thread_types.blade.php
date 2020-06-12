@@ -14,7 +14,7 @@
              style="height: 100px;display: inline-block;animation-delay: 0.7s" alt="">
         <p class="font-heavy grey-text-4 uk-animation-slide-left"
            style="display:inline-block;position:relative;top: 15px;left: 20px;animation-delay: 1s;font-size: 40px;">
-            Latest @if($type == 1) Image @elseif($type == 2) Video @endif Threads<span
+            Popular @if($type == 1) Image @elseif($type == 2) Video @endif Threads<span
                 class="accent-color">.</span></p>
     </div>
     <div id="search_result" class="uk-grid uk-margin-medium-top" uk-grid="masonry: true">

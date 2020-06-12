@@ -14,7 +14,7 @@ class UpdateThreadCountInGadget extends Migration
     public function up()
     {
         Schema::table('gadget', function (Blueprint $table) {
-            //
+            $table->integer('thread_count')->nullable()->default(0)->after('slug');
         });
     }
 
